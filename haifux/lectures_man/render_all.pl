@@ -14,7 +14,9 @@ my @lectures_flat;
 
 my @this_time = localtime(time());
 my ($this_day, $this_month, $this_year) = @this_time[3,4,5];
+print "\$this_day=$this_day\n";
 $this_year += 1900;
+$this_month++;
 my %series_indexes = ();
 foreach my $year (sort { $a <=> $b } keys(%lectures))
 {
@@ -118,6 +120,8 @@ my $table_headers =
 $print_all_files->($table_headers);
     
 my ($lecture);
+my $is_future = 0;
+
 foreach $lecture (@lectures_flat)
 {
     my @fields;
@@ -181,6 +185,27 @@ foreach $lecture (@lectures_flat)
     
     my $date = $lecture->{'d'};
 
+    if (! $is_future )
+    {
+        my ($date_day, $date_month, $date_year) = split(m!/!, $date);
+
+        my $cmp_val = 
+            (($date_year <=> $this_year) || 
+            ($date_month <=> $this_month) ||
+            ($date_day <=> $this_day));
+
+        if ($cmp_val >= 0)
+        {
+            $print_all_files->(
+                "</table>\n",
+                "<h2>Future Lectures</h2>\n",
+                $table_headers
+            );
+            $is_future = 1;
+        }
+    }
+        
+    
     $date =~ s{^(\d+)/(\d+)/\d{2}(\d{2})$}{$1/$2/$3};
     
     push @fields, $date;
