@@ -169,8 +169,16 @@ sub explicit_url_subject_render
     'oleg' =>
     {
         'name' => "Oleg Goldshmidt",
-        'name_render_type' => "plain",
+        'name_render_type' => "email",
+        'email' => "pub\@goldshmidt.org",
         'subject_render' => "no_url",
+    },
+    'orna' =>
+    {
+        'name' => "Orna Agmon",
+        'name_render_type' => "homepage",
+        'subject_render' => "no_url",
+        'homepage' => "http://tx.technion.ac.il/~agmon/",
     },
     'orrd' =>
     {
@@ -201,7 +209,8 @@ sub explicit_url_subject_render
     'sun' =>
     {
         'name' => "Shachar Shemesh",
-        'name_render_type' => "plain",
+        'name_render_type' => "email",
+        'email' => "haifux\@shemesh.biz",
         'subject_render' => "series_idx",
     },
     'tzafrir' =>
@@ -889,6 +898,12 @@ EOF
             'l' => "oleg",
             's' => "Scaling *Way* Up",
             'd' => "12/5",
+            't' => [qw(prog)],
+        },
+        {
+            'l' => "orna",
+            's' => "Portability Programming",
+            'd' => "26/5",
             't' => [qw(prog)],
         },
     ],

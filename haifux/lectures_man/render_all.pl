@@ -329,6 +329,11 @@ foreach $lecture (@lectures_flat)
     {
         $lecturer_field = $lecturer_record->{'name'};
     }
+    elsif ($name_render_type eq "homepage")
+    {
+        $lecturer_field = "<a href=\"". $lecturer_record->{'homepage'} . "\">".
+            $lecturer_record->{'name'} . "</a>";
+    }
     else
     {
         die ("Uknown lecturer's name_render_type field for " . 
