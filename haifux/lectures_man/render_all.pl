@@ -69,6 +69,26 @@ if (! -d $dest_dir)
     mkdir($dest_dir);
 }
 
+my $group_id = 1;
+
+my $num_lectures_in_group = 20;
+
+my $last_idx_in_group = 20;
+
+my $get_grouped_file = sub {
+    my $first_idx = $num_lectures_in_group*($group_id-1)+1;
+    my $last_idx = $first_idx+19;
+    $last_idx_in_group = $last_idx;
+    return {
+        'id' => "grouped",
+        'url' => "lectures$group_id.html",
+        't_match' => ".*",
+        '<title>' => "Haifa Linux Club (Lectures $first_idx-$last_idx)",
+        'h1_title' => "Haifa Linux Club - Lectures $first_idx-$last_idx",
+        'buffer' => "",
+    };
+};
+
 my @files = 
 (
     {
@@ -78,6 +98,7 @@ my @files =
         '<title>' => "Haifa Linux Club (All Lectures)",
         'h1_title' => "Haifa Linux Club - All the Lectures",
     },
+    $get_grouped_file->(),        
     {
         'id' => "advocacy",
         'url' => "advocacy.html",
@@ -121,9 +142,9 @@ my @files =
         '<title>' => "Haifa Linux Club (Tools and Utilities Lectures)",
         'h1_title' => "Haifa Linux Club - Tools and Utilities Lectures",
     },
- 
-    
 );
+
+my ($grouped_file_idx) = (grep { $files[$_]->{'id'} eq "grouped" } (0 .. $#files));
 
 foreach my $f (@files)
 {
@@ -152,8 +173,7 @@ my $print_all_files = sub {
     return $print_topic_files->("all", @_);
 };
 
-
-$print_all_files->(
+my $get_header = 
     sub { 
         my $file = shift; 
         return ("<html>\n",
@@ -161,8 +181,11 @@ $print_all_files->(
             "<body bgcolor=\"white\">\n",
             "<div align=\"center\"><h1>$file->{'h1_title'}</h1></div>\n",
             "<h2>Past Lectures</h2>\n",
-            ) 
-        }
+            ) ;
+    };
+        
+$print_all_files->(
+        $get_header
     );
             
 my $table_headers =  
@@ -175,6 +198,8 @@ $print_all_files->($table_headers);
     
 my ($lecture);
 my $is_future = 0;
+
+my $page_footer = "</table>\n</body>\n</html>\n";
 
 foreach $lecture (@lectures_flat)
 {
@@ -274,10 +299,23 @@ foreach $lecture (@lectures_flat)
 }
 continue
 {
-    $series_indexes{$lecture->{'series'}}++;
+    my $series = $lecture->{'series'};
+    my $lecture_idx = ($series_indexes{$series}++);
+    if (($series eq 'default') && ($lecture_idx == $last_idx_in_group))
+    {
+        $group_id++;
+        my $f = $files[$grouped_file_idx];
+        my $buffer = $f->{'buffer'};
+        $buffer .= $page_footer;
+        open O, ">$dest_dir/$f->{'url'}";
+        print O $buffer;
+        close(O);
+        $f = $files[$grouped_file_idx] = $get_grouped_file->();
+        $f->{'buffer'} .= ($get_header->($f) . $table_headers);
+    }
 }
 
-$print_all_files->("</table>\n", "</body>\n", "</html>\n");
+$print_all_files->($page_footer);
 
 foreach my $f (@files)
 {
@@ -285,3 +323,4 @@ foreach my $f (@files)
     print O $f->{'buffer'};
     close(O);
 }
+
