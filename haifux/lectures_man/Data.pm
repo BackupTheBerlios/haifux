@@ -37,7 +37,13 @@ sub series_idx_subject_render
         'name_render_type' => "email",
         'email' => "alon\@vipe.technion.ac.il",
         'subject_render' => \&series_idx_subject_render,
-    }
+    },
+    'asaf_arbely' =>
+    {
+        'name' => "Asaf Arbely",
+        'name_render_type' => "plain",
+        'subject_render' => \&series_idx_subject_render,
+    },
     'guykeren' =>
     {
         'name' => "Guy Keren",
@@ -60,7 +66,7 @@ sub series_idx_subject_render
         'subject_render' => sub {
             my $lecture = shift;
             return "<a href=\"http://vipe.technion.ac.il/~shlomif/lecture/" . $lecture->{'url'} . "\">" . $lecture->{'s'} . "</a>";
-        };
+        },
     },
 );
 
@@ -104,14 +110,78 @@ my %topics =
     },
     'tools' =>
     {
-        'name' => "Tools and utilities lectures".
+        'name' => "Tools and utilities lectures",
     },
 );
 
 %lectures = 
 (
     '1999' =>
-    [        
+    [
+        {
+            'l' => "choo",
+            's' => "Introduction to Linux",
+            'd' => "19/8",
+            't' => "none",
+        },
+        {
+            'l' => "choo",
+            's' => "Robust Programming",
+            'd' => "9/9",
+            't' => "prog",
+        },
+        {
+            'l' => "choo",
+            's' => "PAM (Pluggable Authentication Management)",
+            'd' => "23/9",
+            't' => "security",
+        },
+        {
+            'l' => "orrd",
+            's' => "Linux Security",
+            'd' => "21/10",
+            't' => "security",
+        },
+        {
+            'l' => "choo",
+            's' => "PAM (Pluggable Authentication Management) - Writing PAM Modules",
+            'd' => "4/11",
+            't' => "security",
+            'comments' => qq{<ul>
+	 <li><a href="http://www.csn.ul.ie/~airlied/pam_smb">A PAM Module
+for NT Connectivity</a>
+	 <li><a href="http://us1.samba.org/samba/ftp/pam_ntdom">A Samba
+Based PAM</a>
+      </ul>},      
+        },
+        {
+            'l' => "asaf_arbely",
+            's' => "Universal Servers - Architecture, Availability and Usage. The plaftorm is... Informix",
+            'd' => "18/11",
+            't' => "tools",
+            'comments' => <<'EOF',
+        <ul>
+	 <li><a href="http://www.informix.com/iif2000/">Informix Internet
+Foundation 2000</a></li>
+         <li><a
+href="http://www.informix.com/informix/products/linux/">Informix on
+Linux</a></li>
+         <li><a href="http://www.informix.com/idn">Informix Developers
+Network</a></li>
+	 <li><a
+href="http://www.informix.com/informix/press/1999/nov99/redhat.htm">Informix
+and RedHat</a></li>
+       </ul>
+EOF
+                ,
+        },
+        {
+            'l' => "
+            's' =>
+        },
+
+            
+            
     ],
     '2000' =>
     [
@@ -129,7 +199,7 @@ my %topics =
         },
         {
             'l' => "choo",
-            's' => "CORBA - Theory before Practice"
+            's' => "CORBA - Theory before Practice",
             'd' => "24/8",
             't' => "prog",
         },
@@ -139,6 +209,7 @@ my %topics =
             'd' => "26/3",
             'series' => "perl",
             't' => "prog",
+            'url' => "Perl/Newbies/lecture1/",
         },
     ],
     '2001' =>

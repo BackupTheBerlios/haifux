@@ -2,6 +2,8 @@
 
 use strict;
 
+use FileHandle;
+
 use Data::Dumper;
 
 use Data;
@@ -12,6 +14,7 @@ my @lectures_flat;
 
 my @this_time = localtime(time());
 my ($this_day, $this_month, $this_year) = @this_time[3,4,5];
+$this_year += 1900;
 my %series_indexes = ();
 foreach my $year (1999 .. $this_year)
 {
@@ -54,19 +57,66 @@ if (! -d $dest_dir)
     mkdir($dest_dir);
 }
 
-open ALL, ">$dest_dir/all.html";
-print ALL "<html>\n";
-print ALL "<head><title>Haifa Linux Club (All Lectures)</title></head>\n";
-print ALL "<body bgcolor=\"white\">\n";
-print ALL "<div align=\"center\"><h1>Haifa Linux Club - All the Lectures</h1></div>\n";
-print ALL "<h2>Past Lectures</h2>\n";
-print ALL "<table>\n";
-print ALL "<tr>\n";
-foreach my $header ("Lecture Number", "Subject", "Lecturer", "Date", "Comments or Links")
+my @files = 
+(
+    {
+        'id' => "all",
+        'url' => "all.html",
+        't_match' => ".*",
+        '<title>' => "Haifa Linux Club (All Lectures)",
+        'h1_title' => "Haifa Linux Club - All the Lectures",
+    },
+    
+);
+
+foreach my $f (@files)
 {
-    print ALL "<td>$header</td>\n";
+    $f->{'buffer'} = "";
 }
-print ALL "</tr>\n";
+
+
+my $print_topic_files = sub
+{
+    my $topics = shift;
+    if (ref($topics) eq "")
+    {
+        $topics = [ $topics ];
+    }
+    foreach my $file (@files)
+    {
+        my $pattern = $file->{'t_match'};
+        if (grep { ($_ eq "all") || ($_ =~ m/^$pattern$/) } @$topics)
+        {
+            $file->{'buffer'} .= join("", (map { (ref($_) eq "CODE" ? $_->($file) : $_) } @_));
+        }
+    }
+};
+
+my $print_all_files = sub {    
+    return $print_topic_files->("all", @_);
+};
+
+
+$print_all_files->(
+    sub { 
+        my $file = shift; 
+        return ("<html>\n",
+            "<head><title>$file->{'<title>'}</title></head>\n",
+            "<body bgcolor=\"white\">\n",
+            "<div align=\"center\"><h1>$file->{'h1_title'}</h1></div>\n",
+            "<h2>Past Lectures</h2>\n",
+            ) 
+        }
+    );
+            
+my $table_headers =  
+    "<table border=\"1\">\n" .
+    "<tr>\n" .
+    join("", map { "<td>$_</td>\n" } ("Lecture Number", "Subject", "Lecturer", "Date", "Comments or Links")) .
+    "</tr>\n";
+
+$print_all_files->($table_headers);
+    
 my ($lecture);
 foreach $lecture (@lectures_flat)
 {
@@ -74,7 +124,7 @@ foreach $lecture (@lectures_flat)
 
     # Generate the lecture number
     my $series = $lecture->{'series'};
-    my $idx_in_series = $series_indexes{$series}
+    my $idx_in_series = $series_indexes{$series};
     push @fields, $series_map{$series}->{'lecture_num_template'}->($idx_in_series);
 
     # Generate the subject
@@ -106,7 +156,7 @@ foreach $lecture (@lectures_flat)
     if ($lecturer_record->{'name_render_type'} eq "email")
     {
         $lecturer_field = "<a href=\"mailto:" . $lecturer_record->{'email'} . 
-        "\">" . $lecturer_reocrd->{'name'} . "</a>";
+        "\">" . $lecturer_record->{'name'} . "</a>";
     }
     else
     {
@@ -127,16 +177,20 @@ foreach $lecture (@lectures_flat)
 
     push @fields, $lecture->{'comments'};
 
-    foreach my $f (@fields)
-    {
-        print ALL "<td>\n$f\n</td>\n";
-    }
+    my $rendered_lecture = "<tr>\n" . join("", map { "<td>\n$_\n</td>\n" } @fields) . "</tr>\n";
+
+    $print_topic_files->($lecture->{'t'}, $rendered_lecture);
 }
 continue
 {
     $series_indexes{$lecture->{'series'}}++;
 }
 
-print ALL "</table>\n";
-print ALL "</body>\n";
-print ALL "</html>\n";
+$print_all_files->("</table>\n", "</body>\n", "</html>\n");
+
+foreach my $f (@files)
+{
+    open O, ">$dest_dir/$f->{'url'}";
+    print O $f->{'buffer'};
+    close(O);
+}
