@@ -156,8 +156,8 @@ sub explicit_url_subject_render
     {
         'name' => "Moshe Zadka",
         'name_render_type' => "homepage",
-        'homepage' => "http://mozhez.org/",
-        'subject_render' => "series_idx",
+        'homepage' => "http://moshez.org/",
+        'subject_render' => "explicit_url",
     },
     'mulix' =>
     {
@@ -192,13 +192,13 @@ sub explicit_url_subject_render
         'name' => "Oleg Goldshmidt",
         'name_render_type' => "email",
         'email' => "pub\@goldshmidt.org",
-        'subject_render' => "no_url",
+        'subject_render' => "series_idx",
     },
     'orna' =>
     {
         'name' => "Orna Agmon",
         'name_render_type' => "homepage",
-        'subject_render' => "no_url",
+        'subject_render' => "series_idx",
         'homepage' => "http://tx.technion.ac.il/~agmon/",
     },
     'orrd' =>
@@ -951,7 +951,6 @@ EOF
             's' => "The Eobj Perl Environment",
             'd' => "9/6",
             't' => [qw(prog)],
-            'url' => "TBA",
         },
         {
             'l' => "sun",
@@ -968,20 +967,20 @@ EOF
             'comments' => <<EOF,
 Re-run of <a href="./lectures/50/">lecture #50</a>
 EOF
-            'subject_render' => "no_url",
         },
         {
             'l' => "moshez",
             's' => "Python and Twisted",
             'd' => "21/7",
             't' => [qw(prog util)],
-            'subject_render' => "no_url",
+            'url' => "http://twistedmatrix.com/~moshez/haifux.html",
         },
         {
             'l' => "mulix",
             's' => "OLS 2003",
             'd' => "4/8",
             't' => [qw(kernel)],
+            'subject_render' => "explicit_url",
             'url' => "http://www.linuxsymposium.org/",
         },
         {
