@@ -67,7 +67,8 @@ sub explicit_url_subject_render
     'aviram' =>
     {
         'name' => "Aviram Jenik",
-        'name_render_type' => "plain",
+        'name_render_type' => "email",
+        'email' => "aviram\@beyondsecurity.com",
         'subject_render' => "series_idx",
     },
     'alon' =>
@@ -125,6 +126,18 @@ sub explicit_url_subject_render
         'name_render_type' => "email",
         'email' => "choo\@actcom.co.il",
         'subject_render' => "series_idx",
+    },
+    'haifux_members' =>
+    {
+        'name' => "Haifux Members",
+        'name_render_type' => "plain",
+        'subject_render' => "no_url",
+    },
+    'iftach_hyams' =>
+    {
+        'name' => "Iftach Hyams",
+        'name_render_type' => "plain",
+        'subject_render' => "no_url",
     },
     'mark_silberstein' =>
     {
@@ -258,6 +271,13 @@ sub explicit_url_subject_render
                 my $lecture_num = shift;
                 return "<a href=\"http://vipe.technion.ac.il/~shlomif/lecture/Perl/Newbies/\">Programming in Perl - $lecture_num</a>";
             },        
+    },
+    'none' =>
+    {
+        'lecture_num_template' => sub {
+                my $lecture_num = shift;
+                return "";
+        },
     },
 );
 
@@ -927,17 +947,18 @@ EOF
             't' => [qw(prog)],
         },
         {
-            'l' => "sun",
-            's' => "WINE",
-            'd' => "9/6",
-            't' => [qw(prog system)],
-        },
-        {
             'l' => "eli",
             's' => "The Eobj Perl Environment",
-            'd' => "23/6",
+            'd' => "9/6",
             't' => [qw(prog)],
             'url' => "TBA",
+        },
+        {
+            'l' => "sun",
+            's' => "WINE",
+            'd' => "23/6",
+            't' => [qw(prog system)],
+            'subject_render' => "no_url",
         },
         {
             'l' => "mulix",
@@ -947,24 +968,54 @@ EOF
             'comments' => <<EOF,
 Re-run of <a href="./lectures/50/">lecture #50</a>
 EOF
+            'subject_render' => "no_url",
         },
         {
             'l' => "moshez",
-            's' => "Python and Twist",
+            's' => "Python and Twisted",
             'd' => "21/7",
             't' => [qw(prog util)],
+            'subject_render' => "no_url",
         },
         {
             'l' => "mulix",
             's' => "OLS 2003",
             'd' => "4/8",
             't' => [qw(kernel)],
+            'url' => "http://www.linuxsymposium.org/",
+        },
+        {
+            'l' => "iftach_hyams",
+            's' => "Real Time in Linux",
+            'd' => "18/8",
+            't' => [qw(system kernel)],
+        },
+        {
+            'l' => "haifux_members",
+            's' => "Arranging the W2L and InstaParty",
+            'd' => "25/8",
+            'series' => "none",
+            't' => [],
         },
         {
             'l' => "oleg",
             's' => "Pseudo-, Quasi-, and Real Random Numbers",
-            'd' => "18/8",
+            'd' => "1/9",
             't' => [qw(prog)],
+        },
+        {
+            'l' => "aviram",
+            's' => "SPAM - Everyone's Favorite Food",
+            'd' => "15/9",
+            't' => [qw(network)],
+            'subject_render' => "no_url",
+        },
+        {
+            'l' => "shimon_panfil",
+            's' => "Tcl/Tk",
+            'd' => "29/9",
+            't' => [qw(prog util)],
+            'subject_render' => "no_url",
         },
     ],
 );
