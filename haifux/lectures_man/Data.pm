@@ -108,6 +108,12 @@ sub explicit_url_subject_render
         'name_render_type' => "plain",
         'subject_render' => "series_idx",
     },
+    'eran_sandler' =>
+    {
+        'name' => "Eran Sandler",
+        'name_render_type' => "plain",
+        'subject_render' => "series_idx",
+    },
     'ez-aton' =>
     {
         'name' => "Ez-Aton",
@@ -208,6 +214,13 @@ sub explicit_url_subject_render
         'email' => "orrd\@vipe.technion.ac.il",
         'subject_render' => "series_idx",
     },
+    'ron_art' =>
+    {
+        'name' => "Ron Artstein",
+        'name_render_type' => "homepage",
+        'homepage' => "http://www.cs.technion.ac.il/~artstein/",
+        'subject_render' => "series_idx",
+    },
     'shimon_panfil' =>
     {
         'name' => "Shimon Panfil, Ph.D.",
@@ -237,6 +250,12 @@ sub explicit_url_subject_render
     'tzafrir' =>
     {
         'name' => "Tzafrir Cohen",
+        'name_render_type' => "plain",
+        'subject_render' => "series_idx",
+    },
+    'tzahi_fadida' =>
+    {
+        'name' => "Tzahi Fadida",
         'name_render_type' => "plain",
         'subject_render' => "series_idx",
     },
@@ -1003,16 +1022,66 @@ EOF
             't' => [qw(prog)],
         },
         {
+            'l' => "shimon_panfil",
+            's' => "Tcl/Tk",
+            'd' => "15/9",
+            't' => [qw(prog util)],
+        },
+        {
+            'l' => "ron_art",
+            's' => "Mulitilingual Typesetting",
+            'd' => "29/9",
+            't' => [qw(util)],
+        },
+        {
             'l' => "aviram",
             's' => "SPAM - Everyone's Favorite Food",
-            'd' => "15/9",
+            'd' => "15/12",
             't' => [qw(network)],
             'subject_render' => "no_url",
         },
         {
-            'l' => "shimon_panfil",
-            's' => "Tcl/Tk",
-            'd' => "29/9",
+            'l' => "orrd",
+            's' => "SMTP and qmail",
+            'd' => "29/12",
+            't' => [qw(network util)],
+            'subject_render' => "no_url",
+        },
+    ],
+    '2004' =>
+    [
+        {
+            'l' => "alon",
+            's' => "SPAM",
+            'd' => "12/1",
+            't' => [qw(network)],
+            'subject_render' => "no_url",
+        },
+        {
+            'l' => "eran_sandler",
+            's' => "The mono Project",
+            'd' => "26/1",
+            't' => [qw(system prog)],
+        },
+        {
+            'l' => "ron_art",
+            's' => "Multilingual TeX",
+            'd' => "9/2",
+            't' => [qw(util)],
+            'comments' => qq{A sequel to <a href="./lectures/81/">Multilingual Typesetting</a>},
+            'subject_render' => "no_url",
+        },
+        {
+            'l' => "mulix",
+            's' => "UML - User Mode Linux",
+            'd' => "23/2",
+            't' => [qw(kernel system prog)],
+            'subject_render' => "no_url",
+        },
+        {
+            'l' => "tzahi_fadida",
+            's' => "CVS",
+            'd' => "TBD",
             't' => [qw(prog util)],
             'subject_render' => "no_url",
         },

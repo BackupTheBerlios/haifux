@@ -63,7 +63,7 @@ foreach my $year (sort { $a <=> $b } keys(%lectures))
             push @processed_topics, $real_topic;
         }
         $lecture_copy{'t'} = \@processed_topics;
-        $lecture_copy{'d'} .= "/$year"; 
+        $lecture_copy{'d'} .= "/$year" if ($lecture_copy{'d'} =~ /^\d+\/\d+$/); 
         if (!exists($lecture_copy{'comments'}))
         {
             $lecture_copy{'comments'} = "";            
