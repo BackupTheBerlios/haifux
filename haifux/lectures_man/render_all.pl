@@ -287,7 +287,13 @@ foreach $lecture (@lectures_flat)
     # Generate the lecture number
     my $series = $lecture->{'series'};
     my $idx_in_series = $series_indexes{$series};
-    push @fields, $series_map{$series}->{'lecture_num_template'}->($idx_in_series, 'strict' => $strict_flag);
+    my $series_handle = $series_map{$series};
+    if (exists($lecture->{'sub-series'}))
+    {
+        $series_handle = $series_map{$series}->{'sub-series'}->{$lecture->{'sub-series'}};
+    }
+    my $lecture_num_template = $series_handle->{'lecture_num_template'};
+    push @fields, $lecture_num_template->($idx_in_series, 'strict' => $strict_flag);
 
     # Generate the subject
 

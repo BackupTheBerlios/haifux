@@ -259,6 +259,12 @@ sub explicit_url_subject_render
         'name_render_type' => "plain",
         'subject_render' => "series_idx",
     },
+    'you' =>
+    {
+        'name' => "You, yes you",
+        'name_render_type' => "plain",
+        'subject_render' => "no_url",
+    },
 );
 
 %series_map =
@@ -281,7 +287,28 @@ sub explicit_url_subject_render
                 {
                     return "<div align=\"center\">$lecture_num</div>\n"
                 }
-            },               
+            },
+        'sub-series' =>
+        {
+            'SiL' => {
+                'lecture_num_template' => sub {
+                my $lecture_num = shift;
+                my %flags = (@_);
+                if ($flags{'strict'})
+                {
+                    return 
+                        {
+                            'td-params' => " class=\"c\"",
+                            'text' => "$lecture_num SiL",
+                        };
+                }
+                else
+                {
+                    return "<div align=\"center\">$lecture_num SiL</div>\n"
+                }
+            },
+            },
+        },
     },
     'perl' =>
     {
@@ -1051,40 +1078,97 @@ EOF
     '2004' =>
     [
         {
+            'l' => "choo",
+            's' => "UNIX's basics: Users, Processes, Permissions and What's Between Them",
+            'd' => "5/1",
+            't' => [qw(system)],
+            'comments' => "<p>In Two Parts</p>",
+            'sub-series' => "SiL",
+            'url' => "084-sil/",
+        },
+        {
             'l' => "alon",
-            's' => "SPAM",
+            's' => "Proxying - why and how",
             'd' => "12/1",
             't' => [qw(network)],
-            'subject_render' => "no_url",
+        },
+        {
+            'l' => "choo",
+            's' => "Kernel, Modules, Drivers",
+            'd' => "19/1",
+            't' => [qw(system kernel)],
+            'comments' => "In two parts",
+            'url' => "86-sil/",
         },
         {
             'l' => "eran_sandler",
             's' => "The mono Project",
             'd' => "26/1",
             't' => [qw(system prog)],
+            'comments' => qq{<p>See <a href="http://www.go-mono.com/">Mono</a></p>},
+        },
+        {
+            'l' => "choo",
+            's' => "Kernel, Modules, Drivers - Part II",
+            'd' => "2/2",
+            't' => [qw(kernel system)],
+            'url' => "88-sil/",
+            'sub-series' => "SiL",
+        },
+        {
+            'l' => "mulix",
+            's' => "Linux Device Drivers",
+            'd' => "9/2",
+            'url' => "http://www.mulix.org/klife.html",
+            't' => [qw(kernel)],
+            'subject_render' => "explicit_url",
+        },
+        {
+            'l' => "alon",
+            's' => "Multimedia in Linux",
+            'd' => "16/2",
+            'sub-series' => "SiL",
+            'subject_render' => "no_url",
+            't' => [qw(util system)],
         },
         {
             'l' => "ron_art",
             's' => "Multilingual TeX",
-            'd' => "9/2",
+            'd' => "23/2",
             't' => [qw(util)],
             'comments' => qq{A sequel to <a href="./lectures/81/">Multilingual Typesetting</a>},
             'subject_render' => "no_url",
         },
         {
-            'l' => "mulix",
-            's' => "UML - User Mode Linux",
-            'd' => "23/2",
-            't' => [qw(kernel system prog)],
+            'l' => "orna",
+            's' => "Working with the UNIX Shell",
+            'd' => "1/3",
+            't' => [qw(system)],
+            'subject_render' => "no_url",
+            'sub-series' => "SiL",
+        },
+        {
+            'l' => "you",
+            's' => "Open Slot",
+            'd' => "8/3",
+            't' => [],
             'subject_render' => "no_url",
         },
         {
             'l' => "tzahi_fadida",
             's' => "CVS",
-            'd' => "TBD",
+            'd' => "15/3",
             't' => [qw(prog util)],
-            'subject_render' => "no_url",
+            'sub-series' => "SiL",
+            'url' => "94-sil/",
         },
+        #{
+        #    'l' => "mulix",
+        #    's' => "UML - User Mode Linux",
+        #    'd' => "21/6",
+        #    't' => [qw(kernel system prog)],
+        #    'subject_render' => "no_url",
+        #}
     ],
 );
 
