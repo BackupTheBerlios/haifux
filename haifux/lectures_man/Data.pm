@@ -28,13 +28,23 @@ sub series_idx_subject_render
     my $idx_in_series = shift;
     my $url = exists($lecture->{'url'}) ? $lecture->{'url'} : "$idx_in_series/";
     return "<a href=\"./lectures/$url\">" . $lecture->{'s'} . "</a>";
-};
+}
 
 sub no_url_subject_render
 {
     my $lecture = shift;
 
     return $lecture->{'s'};
+}
+
+sub explicit_url_subject_render
+{
+    my $lecture = shift;
+    if (!exists($lecture->{'url'}))
+    {
+        die "URL not specified for Lecture " . $lecture->{'s'} . "!\n";
+    }
+    return "<a href=\"" . $lecture->{'url'} . "\">" . $lecture->{'s'} . "</a>";
 }
 
 %lecturers = 
@@ -86,7 +96,7 @@ sub no_url_subject_render
     {
         'name' => "Gilad Ben Yossef",
         'name_render_type' => "plain",
-        'subject_render' => \&series_idx_subject_render,
+        'subject_render' => \&explicit_url_subject_render,
     },
     'guykeren' =>
     {
@@ -764,10 +774,10 @@ application to GNOME2</a></li>
         },
         {
             'l' => "gby",
-            's' => "Embedded Linux",
+            's' => "The Dynamical Linker",
             'd' => "23/12",
             't' => [],
-            'subject_render' => \&no_url_subject_render,
+            'url' => "http://www.benyossef.com/presentations/dlink/",
         },
     ],
     '2003' =>
