@@ -139,11 +139,19 @@ sub explicit_url_subject_render
         'name_render_type' => "plain",
         'subject_render' => "series_idx",
     },
+    'moshez' =>
+    {
+        'name' => "Moshe Zadka",
+        'name_render_type' => "homepage",
+        'homepage' => "http://mozhez.org/",
+        'subject_render' => "series_idx",
+    },
     'mulix' =>
     {
         'name' => "Muli Ben Yehuda",
-        'name_render_type' => "email",
+        'name_render_type' => "homepage",
         'email' => "mulix\@actcom.co.il",
+        'homepage' => "http://www.mulix.org/",
         'subject_render' => "series_idx",
     },
     'mulix_and_choo' =>
@@ -906,6 +914,47 @@ EOF
             'd' => "26/5",
             't' => [qw(prog)],
         },
+        {
+            'l' => "sun",
+            's' => "WINE",
+            'd' => "9/6",
+            't' => [qw(prog system)],
+        },
+        {
+            'l' => "shlomif",
+            's' => "TBA",
+            'd' => "23/6",
+            't' => [],
+            'url' => "TBA",
+        },
+        {
+            'l' => "mulix",
+            's' => "From Python Import Lecture",
+            'd' => "7/7",
+            't' => [qw(prog util)],
+            'comments' => <<EOF,
+Re-run of <a href="./lectures/50/">lecture #50</a>
+EOF
+        },
+        {
+            'l' => "moshez",
+            's' => "Python and Twist",
+            'd' => "21/7",
+            't' => [qw(prog util)],
+        },
+        {
+            'l' => "mulix",
+            's' => "OLS 2003",
+            'd' => "4/8",
+            't' => [qw(kernel)],
+        },
+        {
+            'l' => "oleg",
+            's' => "Pseudo-, Quasi-, and Real Random Numbers",
+            'd' => "18/8",
+            't' => [qw(prog)],
+        },
+            
     ],
 );
 
