@@ -186,9 +186,7 @@ my $print_files = sub
     }
 };
 
-# my $strict_flag = shift;
-
-my $strict_flag = 1;
+my $strict_flag = @ARGV ? shift : 1;
 
 my $get_header = 
     sub { 
