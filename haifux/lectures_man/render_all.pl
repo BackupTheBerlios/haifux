@@ -247,12 +247,16 @@ my $page_footer = "</table>\n<hr size=\"4\" />\n" .
     "<h3>Other Lectures Sorted by Topic</h3>\n" .
     "<ul>\n" .
         join("", 
-            (map 
+            (map
                 { 
+                    if (!exists($topics_map{$_}))
+                    {
+                        die "Unknown Topic in \@topics_order : $_!\n";
+                    }
                     my $url = (exists($topics_map{$_}{'url'}) ? $topics_map{$_}{'url'} : $_);
                     "<li><a href=\"$url.html\">".($topics_map{$_}->{'name'})."</a></li>\n" 
                 } 
-                (keys(%topics_map))
+                (@topics_order)
             )
         ) .
     "</ul>\n" .

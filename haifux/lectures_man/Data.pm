@@ -6,7 +6,7 @@ use vars qw(@ISA);
 
 @ISA=qw(Exporter);
 
-my @exported_vars = qw(%lecturer_aliases %lecturers %lectures %series_map %topics_map %topic_aliases %subject_render_callbacks);
+my @exported_vars = qw(%lecturer_aliases %lecturers %lectures %series_map %topics_map %topic_aliases %subject_render_callbacks @topics_order);
 
 use vars @exported_vars;
 
@@ -271,6 +271,8 @@ sub explicit_url_subject_render
         'title' => "Tools and Utilities Lectures",
     },
 );
+
+@topics_order=(qw(kernel system network security prog utils advocacy));
 
 %topic_aliases =
 (
