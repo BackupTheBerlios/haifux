@@ -921,10 +921,10 @@ EOF
             't' => [qw(prog system)],
         },
         {
-            'l' => "shlomif",
-            's' => "TBA",
+            'l' => "eli",
+            's' => "The Eobj Perl Environment",
             'd' => "23/6",
-            't' => [],
+            't' => [qw(prog)],
             'url' => "TBA",
         },
         {
