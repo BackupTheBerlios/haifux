@@ -452,7 +452,7 @@ EOF
         },
         {
             'l' => "oded_koren",
-            's' => "Introducing the Linux World to Outsides",
+            's' => "Introducing the Linux World to Outsiders",
             'd' => "12/12",
             't' => "advocacy",
         },
