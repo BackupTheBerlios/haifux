@@ -234,29 +234,35 @@ sub explicit_url_subject_render
         'url' => "advocacy",
         'title' => "Advocacy Related Lectures",
     },
-    'network' => 
-    {
-        'name' => "Networking lectures",
-        'url' => "network",
-        'title' => "Networking Lectures",
-    },
     'kernel' =>
     {
         'name' => "Linux kernel lectures",
         'url' => "kernel",
         'title' => "Kernel Lectures",
     },
-    'security' =>
+    'network' => 
     {
-        'name' => "Security lectures",
-        'url' => "security",
-        'title' => "Security Lectures",
+        'name' => "Networking lectures",
+        'url' => "network",
+        'title' => "Networking Lectures",
     },
     'prog' =>
     {
         'name' => "Programming related lectures",
         'url' => "programming",
         'title' => "Programming Related Lectures",
+    },    
+    'security' =>
+    {
+        'name' => "Security lectures",
+        'url' => "security",
+        'title' => "Security Lectures",
+    },
+    'system' =>
+    {
+        'name' => "Linux system lectures",
+        'url' => "system",
+        'title' => "System Lectures", 
     },
     'utils' =>
     {
@@ -824,27 +830,37 @@ application to GNOME2</a></li>
         },
         {
             'l' => "sun",
-            's' => "Secure Programming",
+            's' => "Secure Programming (Part I)",
             'd' => "17/2",
-            't' => "prog",
+            't' => [qw(prog security)],
             'subject_render' => "no_url",
         },
         {
-            'l' => "shlomif",
-            's' => "Web Meta Language (WML)",
+            'l' => "sun",
+            's' => "Secure Programming (Part II)",
             'd' => "3/3",
-            't' => [qw(prog tools)],
-            'url' => "WebMetaLecture/",
-            'comments' => qq{<a href="http://thewml.org/">The WML Homepage</a>},
+            't' => [qw(prog security)],
+            'subject_render' => "no_url",
         },
         {
-            'l' => "mark_silberstein",
-            's' => "Parallel Programming Concepts",
+            'l' => "orrd",
+            's' => "Boot Loaders for All!",
             'd' => "17/3",
-            't' => [qw(prog network)],
+            't' => [qw(system)],
+            'comments' => <<EOF,
+<ul>
+<li>
+<a href="http://www.haifux.org/lectures/67/mbr.txt">Contents of Master Boot Record</a>
+</li>
+<li>
+<a href="http://www.haifux.org/lectures/67/mbr-disassembly.txt">Contents of MBR
+in Assembly</a>
+</li>
+</ul>
+EOF
         },
         {
-            'l' => "mulix",
+            'l' => "choo",
             's' => "Linux Memory Allocators",
             'd' => "31/3",
             't' => [qw(kernel prog)],
@@ -855,5 +871,16 @@ application to GNOME2</a></li>
             'd' => "14/4",
             't' => [qw(security)],
         },
+        {
+            'l' => "eli",
+            's' => "IP Masquerading using IP-Tables",
+            'd' => "28/4",
+            't' => [qw(network)],            
+        },
     ],
-);
+)
+
+*!@#$!@)($(@#!
+TODO TODO TODO:
+Mark the system topiced lectures as such
+
