@@ -148,8 +148,8 @@ sub explicit_url_subject_render
     },
     'mulix_and_choo' =>
     {
-        'name' => "<a href=\"mulix\@actom.co.il\">Muli Ben-Yehuda</a> and " . 
-            "<a href=\"choo\@actcom.co.il\">Guy Keren</a>",
+        'name' => "<a href=\"mailto:mulix\@actom.co.il\">Muli Ben-Yehuda</a> and " . 
+            "<a href=\"mailto:choo\@actcom.co.il\">Guy Keren</a>",
         'name_render_type' => "plain",
         'subject_render' => "series_idx",
     },
@@ -308,9 +308,9 @@ sub explicit_url_subject_render
             't' => [qw(security utils)],
             'comments' => qq{<ul>
 	 <li><a href="http://www.csn.ul.ie/~airlied/pam_smb">A PAM Module
-for NT Connectivity</a>
+for NT Connectivity</a></li>
 	 <li><a href="http://us1.samba.org/samba/ftp/pam_ntdom">A Samba
-Based PAM</a>
+Based PAM</a></li>
       </ul>},      
         },
         {
@@ -352,7 +352,7 @@ EOF
             's' => "Advanced Socket Programming",
             'd' => "26/12",
             't' => [qw(prog network)],
-            'comments' => qq{Based on <a href="http://www.actcom.co.il/~choo/lupg/tutorials/internetworking/internet-theory.html">LUPG's internet programming tutorial<br />
+            'comments' => qq{Based on <a href="http://www.actcom.co.il/~choo/lupg/tutorials/internetworking/internet-theory.html">LUPG's internet programming tutorial</a><br />
     <ul>
 	<li><a href="http://www.acme.com/software/mini_httpd/">Mini-httpd,
 httpd using the fork model</a></li>

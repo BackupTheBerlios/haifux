@@ -195,7 +195,12 @@ my $get_header =
             print $d->Dump();
             die "Hello";
         }
-        return ("<html>\n",
+        return (
+            #qq{<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">\n},
+            qq{<!DOCTYPE html 
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">\n},
+            "<html>\n",
             "<head><title>$file->{'<title>'}</title></head>\n",
             "<body bgcolor=\"white\" text=\"black\" background=\"pics/backtux.gif\">\n",
             "<div align=\"center\"><h1>$file->{'h1_title'}</h1></div>\n",
