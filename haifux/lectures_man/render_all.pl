@@ -367,7 +367,7 @@ foreach $lecture (@lectures_flat)
     }
         
     
-    $date =~ s{^(\d+)/(\d+)/\d{2}(\d{2})$}{$1/$2/$3};
+    # $date =~ s{^(\d+)/(\d+)/\d{2}(\d{2})$}{$1/$2/$3};
     
     push @fields, $date;
 
