@@ -700,6 +700,14 @@ COrba</a></li>
         },
         {
             'l' => "shlomif",
+            's' => "Intro to Programming in Perl",
+            'd' => "22/7",
+            'series' => "perl",
+            't' => "prog",
+            'url' => "Perl/Newbies/lecture3/",
+        },
+        {
+            'l' => "shlomif",
             's' => "Intro to the GNU Autotools",
             'd' => "5/8",
             't' => "prog",
