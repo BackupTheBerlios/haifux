@@ -6,7 +6,7 @@ use vars qw(@ISA);
 
 @ISA=qw(Exporter);
 
-my @exported_vars = qw(%lecturer_aliases %lecturers %lectures %series_map);
+my @exported_vars = qw(%lecturer_aliases %lecturers %lectures %series_map %topics_map);
 
 use vars @exported_vars;
 
@@ -196,13 +196,13 @@ sub no_url_subject_render
     },
 );
 
-my %topics = 
+%topics_map = 
 (
     'advocacy' =>
     {
         'name' => "Advocacy and Evangelism lectures",
     },
-    'net' => 
+    'network' => 
     {
         'name' => "Networking lectures",        
     },
@@ -232,7 +232,7 @@ my %topics =
             'l' => "choo",
             's' => "Introduction to Linux",
             'd' => "19/8",
-            't' => "none",
+            't' => [],
         },
         {
             'l' => "choo",
@@ -244,7 +244,7 @@ my %topics =
             'l' => "choo",
             's' => "PAM (Pluggable Authentication Management)",
             'd' => "23/9",
-            't' => "security",
+            't' => [qw(security tools)],
         },
         {
             'l' => "orrd",
@@ -256,7 +256,7 @@ my %topics =
             'l' => "choo",
             's' => "PAM (Pluggable Authentication Management) - Writing PAM Modules",
             'd' => "4/11",
-            't' => "security",
+            't' => [qw(security tools)],
             'comments' => qq{<ul>
 	 <li><a href="http://www.csn.ul.ie/~airlied/pam_smb">A PAM Module
 for NT Connectivity</a>
@@ -339,7 +339,7 @@ explanation (NOT an RFC)</a></li>
             'l' => "shimon_panfil",
             's' => "High Performance Computing on Linux",
             'd' => "23/1",
-            't' => "none",
+            't' => [],
             'comments' => qq{
                 <ul>
 	<li><a href="http://www.cs.huji.ac.il/labs/mosix">MOSIX (Made in
@@ -375,7 +375,7 @@ FAQ - Process control</a></li>
             'l' => "shlomif",
             's' => "The PostgreSQL Relational Database Server",
             'd' => "2/4",
-            't' => "tools",
+            't' => [qw(tools prog)],
             'url' => "PostgreSQL-Lecture/",
         },
         {
@@ -441,7 +441,7 @@ System Concepts</a> chapters 21, 22.</li>
             'l' => "choo",
             's' => "Kernel Hacking",
             'd' => "7/8",
-            't' => "kernel",
+            't' => [qw(kernel prog)],
         },
         {
             'l' => "choo",
@@ -478,7 +478,7 @@ COrba</a></li>
             'l' => "eli",
             's' => "Demistifying Boot Diskettes",
             'd' => "8/1",
-            't' => "none",
+            't' => [],
         },
         {
             'l' => "mulix",
@@ -491,7 +491,7 @@ COrba</a></li>
             'l' => "choo",
             's' => "Development Tools for Linux",
             'd' => "12/2",
-            't' => "prog",
+            't' => [qw(prog tools)],
         },
         {
             'l' => "orrd",
@@ -523,7 +523,7 @@ COrba</a></li>
             'l' => "choo",
             's' => "Development Tools for Linux - Part II",
             'd' => "2/4",
-            't' => "prog",
+            't' => [qw(prog tools)], 
             'url' => "28/",
         },
         {
@@ -613,11 +613,10 @@ COrba</a></li>
             'l' => "mulix_and_choo",
             's' => "Syscalltrack - Design and Implementation",
             'd' => "24/12",
-            't' => "kernel",
+            't' => [qw(kernel prog)],
             'comments' => qq{<a href="http://syscalltrack.sf.net/">Syscalltrack Homepage</a><br />
        <a href="lectures/22/">Kernel hacking lecture (#22)</a>},
         },
-           
     ],
     '2002' =>
     [
@@ -625,13 +624,13 @@ COrba</a></li>
             'l' => "dani_arbel",
             's' => "Advanced Networking - IP Tables",
             'd' => "8/1",
-            't' => "network",
+            't' => [qw(network security)],
         },
         {
             'l' => "dani_arbel",
             's' => "Advanced Networking - Routing and VPNs",
             'd' => "22/1",
-            't' => "network",
+            't' => [qw(network security)],
             'comment' => qq{<a href="http://damyen.technion.ac.il/~dani">Dani Arbel's Lectures and Examples</a>},
         },
         {
@@ -729,7 +728,7 @@ COrba</a></li>
             'l' => "nadav_rotem",
             's' => "The GNOME-2 Desktop + Developing GTK Applications with GLADE2",
             'd' => "14/10",
-            't' => "prog",
+            't' => [qw(prog tools)],
             'comments' => qq{<ul>
 <li><a href="http://gaia.ecs.csus.edu/~rotemn/GPMM/GPMM.html">GPMM2
 for GNOME2</a></li>
@@ -748,7 +747,7 @@ application to GNOME2</a></li>
             'l' => "gby",
             's' => "Embedded Linux",
             'd' => "23/12",
-            't' => "none",
+            't' => [],
             'subject_render' => \&no_url_subject_render,
         },
     ],
@@ -758,14 +757,14 @@ application to GNOME2</a></li>
             'l' => "dan_kenigsberg",
             's' => "Hspell - The First GPLed Hebrew Spell Checker",
             'd' => "6/1",
-            't' => "prog",
+            't' => [qw(prog tools)],
             'subject_render' => \&no_url_subject_render,
         },
         {
             'l' => "mulix",
             's' => "Kernel Hacking",
             'd' => "20/1",
-            't' => "kernel",
+            't' => [qw(kernel prog)],
             'subject_render' => \&no_url_subject_render,
         },
         {
@@ -786,7 +785,7 @@ application to GNOME2</a></li>
             'l' => "shlomif",
             's' => "Web Meta Language (WML)",
             'd' => "3/3",
-            't' => "prog",
+            't' => [qw(prog tools)],
             'url' => "WebMetaLecture/",
             'comments' => qq{<a href="http://thewml.org/">The WML Homepage</a>},
         },

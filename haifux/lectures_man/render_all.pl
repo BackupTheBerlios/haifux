@@ -27,13 +27,24 @@ foreach my $year (sort { $a <=> $b } keys(%lectures))
         {
             if (!exists($lecture_copy{$field}))
             {
-                die "Field '${field}' is not present in lecture No. $lect_idx" . 
-                    "of the year $year. Dump Follows:";
-
                 my $d = Data::Dumper->new([$lecture], ["\$lecture"]);
-                print $d->Dump();
+                my $lect_dump = $d->Dump();
+                
+                die "Field '${field}' is not present in lecture No. " . 
+                    "$lect_idx of the year $year. Dump Follows:\n$lect_dump";
+
             }
-        }        
+        }
+        
+        my $topics = ((ref($lecture->{'t'}) eq "ARRAY") ? $lecture->{'t'} : [ $lecture->{'t'}]);
+        foreach my $a_topic (@$topics)
+        {
+            if (!exists($topics_map{$a_topic}))
+            {
+                die "Topic '${a_topic}' mentioned in lecture " . 
+                    "$lecture->{'s'} is not registered.";
+            }
+        }
         $lecture_copy{'d'} .= "/$year"; 
         if (!exists($lecture_copy{'comments'}))
         {
@@ -68,6 +79,21 @@ my @files =
         'h1_title' => "Haifa Linux Club - All the Lectures",
     },
     {
+        'id' => "advocacy",
+        'url' => "advocacy.html",
+        't_match' => "advocacy",
+        '<title>' => "Haifa Linux Club (Advocacy Related Lectures)",
+        'h1_title' => "Haifa Linux Club - Advocacy Related Lectures",
+    },
+    
+    {
+        'id' => "kernel",
+        'url' => "kernel.html",
+        't_match' => "kernel",
+        '<title>' => "Haifa Linux Club (Kernel Lectures)",
+        'h1_title' => "Haifa Linux Club - Kernel Lectures",
+    },    
+    {
         'id' => "network",
         'url' => "network.html",
         't_match' => "network",
@@ -75,25 +101,18 @@ my @files =
         'h1_title' => "Haifa Linux Club - Networking Lectures",
     },
     {
-        'id' => "kernel",
-        'url' => "kernel.html",
-        't_match' => "kernel",
-        '<title>' => "Haifa Linux Club (Kernel Lectures)",
-        'h1_title' => "Haifa Linux Club - Kernel Lectures",
-    },
+        'id' => "programming",
+        'url' => "programming.html",
+        't_match' => "prog",
+        '<title>' => "Haifa Linux Club (Programming Related Lectures)",
+        'h1_title' => "Haifa Linux Club - Programming Related Lectures",
+    },    
     {
         'id' => "security",
         'url' => "security.html",
         't_match' => "security",
         '<title>' => "Haifa Linux Club (Security Lectures)",
         'h1_title' => "Haifa Linux Club - Security Lectures",
-    },
-    {
-        'id' => "programming",
-        'url' => "programming.html",
-        't_match' => "prog",
-        '<title>' => "Haifa Linux Club (Programming Related Lectures)",
-        'h1_title' => "Haifa Linux Club - Programming Related Lectures",
     },
     {
         'id' => "util",
