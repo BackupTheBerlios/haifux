@@ -6,7 +6,7 @@ use vars qw(@ISA);
 
 @ISA=qw(Exporter);
 
-my @exported_vars = qw(%lecturer_aliases %lecturers %lectures);
+my @exported_vars = qw(%lecturer_aliases %lecturers %lectures %series_map);
 
 use vars @exported_vars;
 
@@ -21,35 +21,50 @@ use vars qw(@EXPORT);
     'mulix' => "muli"
 );
 
+sub series_idx_subject_render
+{
+    my $lecture = shift;
+    my $idx_in_series = shift;
+    my $url = exists($lecture->{'url'}) ? $lecture->{'url'} : "$idx_in_series/";
+    return "<a href=\"./lectures/$url\">" . $lecture->{'s'} . "</a>";
+};
+
 %lecturers = 
 (
     'alon' =>
     {
         'name' => "Alon Altman",
-        'render_type' => "alon",
+        'name_render_type' => "email",
         'email' => "alon\@vipe.technion.ac.il",
+        'subject_render' => \&series_idx_subject_render,
     }
     'guykeren' =>
     {
         'name' => "Guy Keren",
-        'render_type' => "email",
+        'name_render_type' => "email",
         'email' => "choo\@actcom.co.il",
+        'subject_render' => \&series_idx_subject_render,
     },
     'orrd' =>
     {
         'name' => "Orr Dunkelman",
-        'render_type' => "email",
+        'name_render_type' => "email",
         'email' => "orrd\@vipe.technion.ac.il",
+        'subject_render' => \&series_idx_subject_render,
     },
     'shlomif' =>
     {
         'name' => "Shlomi Fish",
-        'render_type' => "email",
+        'name_render_type' => "email",
         'email' => "shlomif\@vipe.technion.ac.il",
+        'subject_render' => sub {
+            my $lecture = shift;
+            return "<a href=\"http://vipe.technion.ac.il/~shlomif/lecture/" . $lecture->{'url'} . "\">" . $lecture->{'s'} . "</a>";
+        };
     },
 );
 
-my %series =
+%series_map =
 (
     'default' => 
     {
