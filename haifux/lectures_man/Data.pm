@@ -6,7 +6,7 @@ use vars qw(@ISA);
 
 @ISA=qw(Exporter);
 
-my @exported_vars = qw(%lecturer_aliases %lecturers %lectures %series_map %topics_map %topic_aliases);
+my @exported_vars = qw(%lecturer_aliases %lecturers %lectures %series_map %topics_map %topic_aliases %subject_render_callbacks);
 
 use vars @exported_vars;
 
@@ -47,123 +47,12 @@ sub explicit_url_subject_render
     return "<a href=\"" . $lecture->{'url'} . "\">" . $lecture->{'s'} . "</a>";
 }
 
-%lecturers = 
+%subject_render_callbacks =
 (
-    'alon' =>
-    {
-        'name' => "Alon Altman",
-        'name_render_type' => "email",
-        'email' => "alon\@vipe.technion.ac.il",
-        'subject_render' => \&series_idx_subject_render,
-    },
-    'asaf_arbely' =>
-    {
-        'name' => "Asaf Arbely",
-        'name_render_type' => "plain",
-        'subject_render' => \&series_idx_subject_render,
-    },
-    'choo_and_eli' =>
-    {
-        'name' => "Guy Keren, Eli Billauer",
-        'name_render_type' => "plain",
-        'subject_render' => \&no_url_subject_render,
-    },
-    'dan_kenigsberg' =>
-    {
-        'name' => "Dan Kenigsberg",
-        'name_render_type' => "plain",
-        'subject_render' => \&series_idx_subject_render,
-    },
-    'dani_arbel' =>
-    {
-        'name' => "Dani Arbel",
-        'name_render_type' => "plain",
-        'subject_render' => \&no_url_subject_render,
-    },
-    'eli' =>
-    {
-        'name' => "Eli Billauer",
-        'name_render_type' => "plain",
-        'subject_render' => \&series_idx_subject_render,
-    },
-    'ez-aton' =>
-    {
-        'name' => "Ez-Aton",
-        'name_render_type' => "plain",
-        'subject_render' => \&series_idx_subject_render,
-    },
-    'gby' =>
-    {
-        'name' => "Gilad Ben Yossef",
-        'name_render_type' => "plain",
-        'subject_render' => \&explicit_url_subject_render,
-    },
-    'guykeren' =>
-    {
-        'name' => "Guy Keren",
-        'name_render_type' => "email",
-        'email' => "choo\@actcom.co.il",
-        'subject_render' => \&series_idx_subject_render,
-    },
-    'mark_silberstein' =>
-    {
-        'name' => "Mark Silberstein",
-        'name_render_type' => "email",
-        'email' => "msilbers\@yahoo.com",
-        'subject_render' => \&no_url_subject_render,       
-    },
-    'meir_maor' =>
-    {
-        'name' => "Meir Maor",
-        'name_render_type' => "plain",
-        'subject_render' => \&series_idx_subject_render,
-    },
-    'mulix' =>
-    {
-        'name' => "Muli Ben Yehuda",
-        'name_render_type' => "email",
-        'email' => "mulix\@actcom.co.il",
-        'subject_render' => \&series_idx_subject_render,
-    },
-    'mulix_and_choo' =>
-    {
-        'name' => "<a href=\"mulix\@actom.co.il\">Muli Ben-Yehuda</a> and " . 
-            "<a href=\"choo\@actcom.co.il\">Guy Keren</a>",
-        'name_render_type' => "plain",
-        'subject_render' => \&series_idx_subject_render,
-    },
-    'nadav_rotem' =>
-    {
-        'name' => "Nadav Rotem",
-        'name_render_type' => "email",
-        'email' => "nadav256\@hotmail.com",
-        'subject_render' => \&no_url_subject_render,
-    },
-    'oded_koren' =>
-    {
-        'name' => "Oded Koren",
-        'name_render_type' => "plain",
-        'subject_render' => \&no_url_subject_render,
-    },       
-    'orrd' =>
-    {
-        'name' => "Orr Dunkelman",
-        'name_render_type' => "email",
-        'email' => "orrd\@vipe.technion.ac.il",
-        'subject_render' => \&series_idx_subject_render,
-    },
-    'shimon_panfil' =>
-    {
-        'name' => "Shimon Panfil, Ph.D.",
-        'name_render_type' => "plain",
-        'subject_render' => \&series_idx_subject_render,
-    },
-    'shlomif' =>
-    {
-        'name' => "Shlomi Fish",
-        'name_render_type' => "email",
-        'email' => "shlomif\@vipe.technion.ac.il",
-        'subject_render' => sub {
+    'explicit_url' => \&explicit_url_subject_render,
+    'no_url' => \&no_url_subject_render,
+    'series_idx' => \&series_idx_subject_render,
+    'shlomif' => sub {
             my $lecture = shift;
             if (!exists($lecture->{'url'}))
             {
@@ -171,18 +60,149 @@ sub explicit_url_subject_render
             }
             return "<a href=\"http://vipe.technion.ac.il/~shlomif/lecture/" . $lecture->{'url'} . "\">" . $lecture->{'s'} . "</a>";
         },
+);
+
+%lecturers = 
+(
+    'aviram' =>
+    {
+        'name' => "Aviram Jenik",
+        'name_render_type' => "plain",
+        'subject_render' => "series_idx",
+    },
+    'alon' =>
+    {
+        'name' => "Alon Altman",
+        'name_render_type' => "email",
+        'email' => "alon\@vipe.technion.ac.il",
+        'subject_render' => "series_idx",
+    },
+    'asaf_arbely' =>
+    {
+        'name' => "Asaf Arbely",
+        'name_render_type' => "plain",
+        'subject_render' => "series_idx",
+    },
+    'choo_and_eli' =>
+    {
+        'name' => "Guy Keren, Eli Billauer",
+        'name_render_type' => "plain",
+        'subject_render' => "no_url",
+    },
+    'dan_kenigsberg' =>
+    {
+        'name' => "Dan Kenigsberg",
+        'name_render_type' => "plain",
+        'subject_render' => "explicit_url",
+    },
+    'dani_arbel' =>
+    {
+        'name' => "Dani Arbel",
+        'name_render_type' => "plain",
+        'subject_render' => "no_url",
+    },
+    'eli' =>
+    {
+        'name' => "Eli Billauer",
+        'name_render_type' => "plain",
+        'subject_render' => "series_idx",
+    },
+    'ez-aton' =>
+    {
+        'name' => "Ez-Aton",
+        'name_render_type' => "plain",
+        'subject_render' => "series_idx",
+    },
+    'gby' =>
+    {
+        'name' => "Gilad Ben Yossef",
+        'name_render_type' => "plain",
+        'subject_render' => "explicit_url",
+    },
+    'guykeren' =>
+    {
+        'name' => "Guy Keren",
+        'name_render_type' => "email",
+        'email' => "choo\@actcom.co.il",
+        'subject_render' => "series_idx",
+    },
+    'mark_silberstein' =>
+    {
+        'name' => "Mark Silberstein",
+        'name_render_type' => "email",
+        'email' => "msilbers\@yahoo.com",
+        'subject_render' => "no_url",       
+    },
+    'meir_maor' =>
+    {
+        'name' => "Meir Maor",
+        'name_render_type' => "plain",
+        'subject_render' => "series_idx",
+    },
+    'mulix' =>
+    {
+        'name' => "Muli Ben Yehuda",
+        'name_render_type' => "email",
+        'email' => "mulix\@actcom.co.il",
+        'subject_render' => "series_idx",
+    },
+    'mulix_and_choo' =>
+    {
+        'name' => "<a href=\"mulix\@actom.co.il\">Muli Ben-Yehuda</a> and " . 
+            "<a href=\"choo\@actcom.co.il\">Guy Keren</a>",
+        'name_render_type' => "plain",
+        'subject_render' => "series_idx",
+    },
+    'nadav_rotem' =>
+    {
+        'name' => "Nadav Rotem",
+        'name_render_type' => "email",
+        'email' => "nadav256\@hotmail.com",
+        'subject_render' => "no_url",
+    },
+    'oded_koren' =>
+    {
+        'name' => "Oded Koren",
+        'name_render_type' => "plain",
+        'subject_render' => "no_url",
+    },       
+    'orrd' =>
+    {
+        'name' => "Orr Dunkelman",
+        'name_render_type' => "email",
+        'email' => "orrd\@vipe.technion.ac.il",
+        'subject_render' => "series_idx",
+    },
+    'shimon_panfil' =>
+    {
+        'name' => "Shimon Panfil, Ph.D.",
+        'name_render_type' => "plain",
+        'subject_render' => "series_idx",
+    },
+    'shlomif' =>
+    {
+        'name' => "Shlomi Fish",
+        'name_render_type' => "email",
+        'email' => "shlomif\@vipe.technion.ac.il",
+        'subject_render' => "shlomif",
     },
     'shlomi_loubaton' =>
     {
         'name' => "Shlomi Loubaton",
         'name_render_type' => "plain",
-        'subject_render' => \&series_idx_subject_render,
+        'subject_render' => "series_idx",
+    },
+    'sun' =>
+    {
+        'name' => "Shachar Shemesh",
+        'name_render_type' => "plain",
+        'subject_render' => "series_idx",
     },
     'tzafrir' =>
     {
         'name' => "Tzafrir Cohen",
         'name_render_type' => "plain",
-        'subject_render' => \&series_idx_subject_render,
+        'subject_render' => "series_idx",
     },
 );
 
@@ -423,7 +443,7 @@ systems structure course</a></li>
 System Concepts</a> chapters 21, 22.</li>
        </ul>
             },
-            'subject_render' => \&no_url_subject_render,
+            'subject_render' => "no_url",
         },
         {
             'l' => "choo",
@@ -774,9 +794,9 @@ application to GNOME2</a></li>
         },
         {
             'l' => "gby",
-            's' => "The Dynamical Linker",
+            's' => "The Dynamic Linker",
             'd' => "23/12",
-            't' => [],
+            't' => [qw(prog)],
             'url' => "http://www.benyossef.com/presentations/dlink/",
         },
     ],
@@ -787,28 +807,27 @@ application to GNOME2</a></li>
             's' => "Hspell - The First GPLed Hebrew Spell Checker",
             'd' => "6/1",
             't' => [qw(prog utils)],
-            'subject_render' => \&no_url_subject_render,
+            'url' => "http://www.cs.technion.ac.il/~danken/hspell/lecture.html",
+            
         },
         {
             'l' => "mulix",
             's' => "Kernel Hacking",
             'd' => "20/1",
             't' => [qw(kernel prog)],
-            'subject_render' => \&no_url_subject_render,
         },
         {
             'l' => "meir_maor",
             's' => "Emacs Power Usage",
             'd' => "3/2",
             't' => "utils",
-            'subject_render' => \&no_url_subject_render,
         },
         {
-            'l' => "mulix",
+            'l' => "sun",
             's' => "Secure Programming",
             'd' => "17/2",
             't' => "prog",
-            'subject_render' => \&no_url_subject_render,
+            'subject_render' => "no_url",
         },
         {
             'l' => "shlomif",
@@ -829,6 +848,12 @@ application to GNOME2</a></li>
             's' => "Linux Memory Allocators",
             'd' => "31/3",
             't' => [qw(kernel prog)],
+        },
+        {
+            'l' => "aviram",
+            's' => "Security Auditing",
+            'd' => "14/4",
+            't' => [qw(security)],
         },
     ],
 );

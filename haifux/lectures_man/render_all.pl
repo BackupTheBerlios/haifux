@@ -279,12 +279,28 @@ foreach $lecture (@lectures_flat)
 
     my $lecturer_record = $lecturers{$lecturer_id};
 
-    my $subject_render = 
+    my $subject_render_text = 
         (exists($lecture->{'subject_render'}) ? 
             $lecture->{'subject_render'} :
             $lecturer_record->{'subject_render'}
         );
 
+    my $subject_render;
+    
+    # if (ref($subject_render_text) eq "CODE")
+    if (0)
+    {
+        $subject_render = $subject_render_text;
+    }
+    elsif (exists($subject_render_callbacks{$subject_render_text}))
+    {
+        $subject_render = $subject_render_callbacks{$subject_render_text};
+    }
+    else
+    {
+        die "Unknown Subject Render '$subject_render_text'!\n";
+    }
+        
     push @fields, 
         $subject_render->(
             $lecture,
