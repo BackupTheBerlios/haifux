@@ -201,28 +201,38 @@ sub no_url_subject_render
     'advocacy' =>
     {
         'name' => "Advocacy and Evangelism lectures",
+        'url' => "advocacy",
+        'title' => "Advocacy Related Lectures",
     },
     'network' => 
     {
-        'name' => "Networking lectures",        
+        'name' => "Networking lectures",
+        'url' => "network",
+        'title' => "Networking Lectures",
     },
     'kernel' =>
     {
         'name' => "Linux kernel lectures",
+        'url' => "kernel",
+        'title' => "Kernel Lectures",
     },
     'security' =>
     {
         'name' => "Security lectures",
+        'url' => "security",
+        'title' => "Security Lectures",
     },
     'prog' =>
     {
         'name' => "Programming related lectures",
         'url' => "programming",
+        'title' => "Programming Related Lectures",
     },
     'utils' =>
     {
         'name' => "Tools and utilities lectures",
         'url' => "util",
+        'title' => "Tools and Utilities Lectures",
     },
 );
 

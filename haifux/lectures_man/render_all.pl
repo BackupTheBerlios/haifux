@@ -127,50 +127,19 @@ my @files =
         'h1_title' => "Haifa Linux Club - All the Lectures",
     },
     $get_grouped_file->(),        
-    {
-        'id' => "advocacy",
-        'url' => "advocacy.html",
-        't_match' => "advocacy",
-        '<title>' => "Haifa Linux Club (Advocacy Related Lectures)",
-        'h1_title' => "Haifa Linux Club - Advocacy Related Lectures",
-    },
-    
-    {
-        'id' => "kernel",
-        'url' => "kernel.html",
-        't_match' => "kernel",
-        '<title>' => "Haifa Linux Club (Kernel Lectures)",
-        'h1_title' => "Haifa Linux Club - Kernel Lectures",
-    },    
-    {
-        'id' => "network",
-        'url' => "network.html",
-        't_match' => "network",
-        '<title>' => "Haifa Linux Club (Networking Lectures)",
-        'h1_title' => "Haifa Linux Club - Networking Lectures",
-    },
-    {
-        'id' => "programming",
-        'url' => "programming.html",
-        't_match' => "prog",
-        '<title>' => "Haifa Linux Club (Programming Related Lectures)",
-        'h1_title' => "Haifa Linux Club - Programming Related Lectures",
-    },    
-    {
-        'id' => "security",
-        'url' => "security.html",
-        't_match' => "security",
-        '<title>' => "Haifa Linux Club (Security Lectures)",
-        'h1_title' => "Haifa Linux Club - Security Lectures",
-    },
-    {
-        'id' => "util",
-        'url' => "util.html",
-        't_match' => "utils",
-        '<title>' => "Haifa Linux Club (Tools and Utilities Lectures)",
-        'h1_title' => "Haifa Linux Club - Tools and Utilities Lectures",
-    },
 );
+
+while (my ($id, $topic) = each(%topics_map))
+{
+    push @files, 
+        {
+            'id' => $id,
+            'url' => ($topic->{'url'}.".html"),
+            't_match' => $id,
+            '<title>' => ("Haifa Linux Club (" . $topic->{'title'} . ")"),
+            'h1_title' => ("Haifa Linux Club - " . $topic->{'title'}),
+        };
+}
 
 my ($grouped_file_idx) = (grep { $files[$_]->{'id'} eq "grouped" } (0 .. $#files));
 
