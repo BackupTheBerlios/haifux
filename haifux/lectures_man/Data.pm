@@ -329,6 +329,7 @@ System Concepts</a> chapters 21, 22.</li>
             'd' => "11/6",
             't' => "network",
             'url' => "16+18/index2.html",
+            'comments' => qq{<a href="http://rfc.roxen.com/rfc/rfc1771.html">RFC 1771 - BGP 4 protocol</a>},
         },
         {
             'l' => "choo",
@@ -338,9 +339,16 @@ System Concepts</a> chapters 21, 22.</li>
         },
         {
             'l' => "orrd",
+            's' => "Introduction to Real Life Administration",
+            'd' => "9/7",
+            't' => "security",
+        },
+        {
+            'l' => "orrd",
             's' => "Advanced Real Life Administration",
             'd' => "24/7",
             't' => "security",
+            'url' => "21/2nd-admin.ps",
         },
         {
             'l' => "choo",
@@ -353,7 +361,32 @@ System Concepts</a> chapters 21, 22.</li>
             's' => "CORBA - Theory before Practice",
             'd' => "24/8",
             't' => "prog",
+            'comments' => qq{
+<ul>
+	<li><a href="http://www.cs.wustl.edu/~schmidt/TAO.html">TAO - The
+ACE Orb</a></li>
+	<li><a href="http://www.icsi.berkeley.edu/~mico">MICO - Mico Is
+COrba</a></li>
+      </ul>
+            },            
         },
+        {
+            'l' => "orrd",
+            's' => "SED - The Stream Editor",
+            'd' => "11/9",
+            't' => "tools",
+            'comments' => qq{<a href ="http://www.dbnet.ece.ntua.gr/~george/sed/sedtut_1.html">Do it with SED</a>},
+        },
+        {
+            'l' => "choo",
+            's' => "CORBA Programming - Simple Clients and Servers",
+            'd' => "25/9",
+            't' => "prog",
+            'comments' => qq{<a href="http://www.cuj.com/experts/1811/vinoski.html">_var and _ptr</a>},
+        },
+    ],
+    '2001' =>
+    [
         {
             'l' => "shlomif",
             's' => "Intro to Programming in Perl",
@@ -361,10 +394,7 @@ System Concepts</a> chapters 21, 22.</li>
             'series' => "perl",
             't' => "prog",
             'url' => "Perl/Newbies/lecture1/",
-        },
-    ],
-    '2001' =>
-    [
+        },    
     ],
     '2002' =>
     [
