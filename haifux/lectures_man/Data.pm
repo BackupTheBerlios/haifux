@@ -51,9 +51,27 @@ sub no_url_subject_render
         'name_render_type' => "plain",
         'subject_render' => \&series_idx_subject_render,
     },
+    'choo_and_eli' =>
+    {
+        'name' => "Guy Keren, Eli Billauer",
+        'name_render_type' => "plain",
+        'subject_render' => \&no_url_subject_render,
+    },
+    'dani_arbel' =>
+    {
+        'name' => "Dani Arbel",
+        'name_render_type' => "plain",
+        'subject_render' => \&no_url_subject_render,
+    },
     'eli' =>
     {
         'name' => "Eli Billauer",
+        'name_render_type' => "plain",
+        'subject_render' => \&series_idx_subject_render,
+    },
+    'ez-aton' =>
+    {
+        'name' => "Ez-Aton",
         'name_render_type' => "plain",
         'subject_render' => \&series_idx_subject_render,
     },
@@ -69,6 +87,13 @@ sub no_url_subject_render
         'name' => "Muli Ben Yehuda",
         'name_render_type' => "email",
         'email' => "mulix\@actcom.co.il",
+        'subject_render' => \&series_idx_subject_render,
+    },
+    'mulix_and_choo' =>
+    {
+        'name' => "<a href=\"mulix\@actom.co.il\">Muli Ben-Yehuda</a> and " . 
+            "<a href=\"choo\@actcom.co.il\">Guy Keren</a>",
+        'name_render_type' => "plain",
         'subject_render' => \&series_idx_subject_render,
     },
     'oded_koren' =>
@@ -99,6 +124,12 @@ sub no_url_subject_render
             my $lecture = shift;
             return "<a href=\"http://vipe.technion.ac.il/~shlomif/lecture/" . $lecture->{'url'} . "\">" . $lecture->{'s'} . "</a>";
         },
+    },
+    'shlomi_loubaton' =>
+    {
+        'name' => "Shlomi Loubaton",
+        'name_render_type' => "plain",
+        'subject_render' => \&series_idx_subject_render,
     },
 );
 
@@ -454,8 +485,128 @@ COrba</a></li>
             't' => "prog",
             'url' => "Perl/Newbies/lecture2/",
         },
+        {
+            'l' => "alon",
+            's' => "Multimedia in Linux",
+            'd' => "23/4",
+            't' => "tools",
+            'comments' => qq{<a href="lectures/33/shlomif_remarks.txt">Shlomi Fish's errata and comments</a>},
+        },
+        {
+            'l' => "choo",
+            's' => "Gtk+ (part I)",
+            'd' => "7/5",
+            't' => "prog",
+            'url' => "34+35/",
+        },
+        {
+            'l' => "choo",
+            's' => "Gtk+ (part II)",
+            'd' => "21/5",
+            't' => "prog",
+            'url' => "34+35/",
+        },
+        {
+            'l' => "choo",
+            's' => "GUI design (Gtk+ part III)",
+            'd' => "4/6",
+            't' => "prog",
+            'url' => "36/",
+        },
+        {
+            'l' => "choo_and_eli",
+            's' => "GUI part IV - Gtk+ and Perl",
+            'd' => "18/6",
+            't' => "prog",
+            'url' => "34+35/",
+            'comments' => qq{<a href="http://www.geocities.com/eli_billauer/ptk.html">Examples for Perl GUI</a>},
+        },
+        {
+            'l' => "shlomif",
+            's' => "GIMP",
+            'd' => "16/7",
+            't' => "tools",
+            'url' => "Gimp/",
+        },
+        {
+            'l' => "shlomif",
+            's' => "GIMP (part II)",
+            'd' => "13/8",
+            't' => "tools",
+            'url' => "Gimp/",
+        },
+        {
+            'l' => "mulix",
+            's' => "ADSL for Linux - War Story",
+            'd' => "27/8",
+            't' => "network",
+            'comments' => qq{<a href="http://www.mulix.org/">The ADSL-HOWTO and patched pptps</a>},
+        },
+        {
+            'l' => "ez-aton",
+            's' => "KickStart and Mass Linux Production",
+            'd' => "10/9",
+            't' => "tools",
+        },
+        {
+            'l' => "orrd",
+            's' => "SSL - the Protocol, the Package and the CA",
+            'd' => "24/9",
+            't' => "security",
+        },
+        {
+            'l' => "shlomi_loubaton",
+            's' => "PHP",
+            'd' => "15/10",
+            't' => "prog",
+        },
+        {
+            'l' => "mulix_and_choo",
+            's' => "Syscalltrack - Design and Implementation",
+            'd' => "24/12",
+            't' => "kernel",
+            'comments' => qq{<a href="http://syscalltrack.sf.net/">Syscalltrack Homepage</a><br />
+       <a href="lectures/22/">Kernel hacking lecture (#22)</a>},
+        },
+           
     ],
     '2002' =>
     [
+        {
+            'l' => "dani_arbel",
+            's' => "Advanced Networking - IP Tables",
+            'd' => "8/1",
+            't' => "network",
+        },
+        {
+            'l' => "dani_arbel",
+            's' => "Advanced Networking - Routing and VPNs",
+            'd' => "22/1",
+            't' => "network",
+            'comment' => qq{<a href="http://damyen.technion.ac.il/~dani">Dani Arbel's Lectures and Examples</a>},
+        },
+        {
+            'l' => "shlomif",
+            's' => "The Scheme Programming Language and Lambda Calculus - Rerun (Lecture #17)",
+            'd' => "4/2",
+            't' => "prog",
+            'url' => "Lambda-Calculus/",
+        },
+        {
+            'l' => "orrd",
+            's' => "The new Anti-Linux US Laws (DMCA, UCITA)",
+            'd' => "18/2",
+            't' => "advocacy",
+            'comments' => qq{<a href="lectures/48/dmca_song">The DMCA song</a>},
+        },
+        {
+            'l' => "alon",
+            's' => "Using Linux in a Windows World",
+            'd' => "4/3",
+            't' => "tools",
+        },
+        
+
+    
     ],
 );
