@@ -69,6 +69,30 @@ my %series =
     },
 );
 
+my %topics = 
+(
+    'net' => 
+    {
+        'name' => "Networking lectures",        
+    },
+    'kernel' =>
+    {
+        'name' => "Linux kernel lectures",
+    },
+    'security' =>
+    {
+        'name' => "Security lectures",
+    },
+    'prog' =>
+    {
+        'name' => "Programming related lectures",
+    },
+    'tools' =>
+    {
+        'name' => "Tools and utilities lectures".
+    },
+);
+
 %lectures = 
 (
     '1999' =>
@@ -80,22 +104,26 @@ my %series =
             'l' => "orrd",
             's' => "Advanced Real Life Administration",
             'd' => "24/7",
+            't' => "security",
         },
         {
             'l' => "choo",
             's' => "Kernel Hacking",
             'd' => "7/8",
+            't' => "kernel",
         },
         {
             'l' => "choo",
             's' => "CORBA - Theory before Practice"
             'd' => "24/8",
+            't' => "prog",
         },
         {
             'l' => "shlomif",
             's' => "Intro to Programming in Perl",
             'd' => "26/3",
             'series' => "perl",
+            't' => "prog",
         },
     ],
     '2001' =>
