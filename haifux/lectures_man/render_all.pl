@@ -16,7 +16,7 @@ my @this_time = localtime(time());
 my ($this_day, $this_month, $this_year) = @this_time[3,4,5];
 $this_year += 1900;
 my %series_indexes = ();
-foreach my $year (1999 .. $this_year)
+foreach my $year (sort { $a <=> $b } keys(%lectures))
 {
     my $lect_idx = 0;
     foreach my $lecture (@{$lectures{$year}})

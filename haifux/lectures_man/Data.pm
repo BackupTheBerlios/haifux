@@ -16,9 +16,10 @@ use vars qw(@EXPORT);
 
 %lecturer_aliases = 
 (
+    'dryice' => "meir_maor",
     'choo' => "guykeren",
     'kilmo' => "orrd",
-    'muli' => "mulix"
+    'muli' => "mulix",    
 );
 
 sub series_idx_subject_render
@@ -57,6 +58,12 @@ sub no_url_subject_render
         'name_render_type' => "plain",
         'subject_render' => \&no_url_subject_render,
     },
+    'dan_kenigsberg' =>
+    {
+        'name' => "Dan Kenigsberg",
+        'name_render_type' => "plain",
+        'subject_render' => \&series_idx_subject_render,
+    },
     'dani_arbel' =>
     {
         'name' => "Dani Arbel",
@@ -75,11 +82,30 @@ sub no_url_subject_render
         'name_render_type' => "plain",
         'subject_render' => \&series_idx_subject_render,
     },
+    'gby' =>
+    {
+        'name' => "Gilad Ben Yossef",
+        'name_render_type' => "plain",
+        'subject_render' => \&series_idx_subject_render,
+    },
     'guykeren' =>
     {
         'name' => "Guy Keren",
         'name_render_type' => "email",
         'email' => "choo\@actcom.co.il",
+        'subject_render' => \&series_idx_subject_render,
+    },
+    'mark_silberstein' =>
+    {
+        'name' => "Mark Silberstein",
+        'name_render_type' => "email",
+        'email' => "msilbers\@yahoo.com",
+        'subject_render' => \&no_url_subject_render,       
+    },
+    'meir_maor' =>
+    {
+        'name' => "Meir Maor",
+        'name_render_type' => "plain",
         'subject_render' => \&series_idx_subject_render,
     },
     'mulix' =>
@@ -95,6 +121,13 @@ sub no_url_subject_render
             "<a href=\"choo\@actcom.co.il\">Guy Keren</a>",
         'name_render_type' => "plain",
         'subject_render' => \&series_idx_subject_render,
+    },
+    'nadav_rotem' =>
+    {
+        'name' => "Nadav Rotem",
+        'name_render_type' => "email",
+        'email' => "nadav256\@hotmail.com",
+        'subject_render' => \&no_url_subject_render,
     },
     'oded_koren' =>
     {
@@ -122,12 +155,22 @@ sub no_url_subject_render
         'email' => "shlomif\@vipe.technion.ac.il",
         'subject_render' => sub {
             my $lecture = shift;
+            if (!exists($lecture->{'url'}))
+            {
+                die "URL not specified for Lecture " . $lecture->{'s'} . "!\n";
+            }
             return "<a href=\"http://vipe.technion.ac.il/~shlomif/lecture/" . $lecture->{'url'} . "\">" . $lecture->{'s'} . "</a>";
         },
     },
     'shlomi_loubaton' =>
     {
         'name' => "Shlomi Loubaton",
+        'name_render_type' => "plain",
+        'subject_render' => \&series_idx_subject_render,
+    },
+    'tzafrir' =>
+    {
+        'name' => "Tzafrir Cohen",
         'name_render_type' => "plain",
         'subject_render' => \&series_idx_subject_render,
     },
@@ -463,6 +506,12 @@ COrba</a></li>
             't' => "tools",
         },
         {
+            'l' => "tzafrir",
+            's' => "RPMs - Meaning of the Package",
+            'd' => "19/3",
+            't' => "tools",
+        },
+        {
             'l' => "shlomif",
             's' => "Intro to Programming in Perl",
             'd' => "26/3",
@@ -605,8 +654,133 @@ COrba</a></li>
             'd' => "4/3",
             't' => "tools",
         },
-        
-
-    
+        {
+            'l' => "mulix",
+            's' => "Python",
+            'd' => "18/3",
+            't' => "prog",
+        },
+        {
+            'l' => "choo",
+            's' => "POSIX Threads - Primitives (part I)",
+            'd' => "8/4",
+            't' => "prog",
+        },
+        {
+            'l' => "choo",
+            's' => "POSIX Threads - Threading Modules (part II)",
+            'd' => "22/4",
+            't' => "prog",
+            'url' => "52+53/",
+        },
+        {
+            'l' => "choo",
+            's' => "POSIX Threads - Threading Modules (part III)",
+            'd' => "20/5",
+            't' => "prog",
+            'url' => "52+53/",
+        },
+        {
+            'l' => "shlomif",
+            's' => "Freecell Solver",
+            'd' => "3/6",
+            't' => "prog",
+            'url' => "Freecell-Solver/",
+            'comments' => qq{<ul>
+         <li><a href="http://www.advogato.com/person/shlomif/diary.html?start=44">Shlomi's thoughts about the lecture</a></li>
+	 <li><a href="http://vipe.technion.ac.il/~shlomif/freecell-solver/">Freecell Solver's Homepage</a></li>
+       </ul>},
+        },
+        {
+            'l' => "alon",
+            's' => "How to Burn CDs in Linux and Remain Sane",
+            'd' => "8/7",
+            't' => "tools",
+            'comments' => qq{<a href="lectures/30">Rerun lecture (30)</a>},
+        },
+        {
+            'l' => "shlomif",
+            's' => "Intro to the GNU Autotools",
+            'd' => "5/8",
+            't' => "prog",
+            'url' => "Autotools/slides/",
+        },
+        {
+            'l' => "orrd",
+            's' => "Promoting Linux - The Marketing Approach",
+            'd' => "19/8",
+            't' => "advocacy",
+        },
+        {
+            'l' => "choo",
+            's' => "Strace and Ltrace Behaviour",
+            'd' => "30/9",
+            't' => "tools",
+        },
+        {
+            'l' => "nadav_rotem",
+            's' => "The GNOME-2 Desktop + Developing GTK Applications with GLADE2",
+            'd' => "14/10",
+            't' => "prog",
+            'comments' => qq{<ul>
+<li><a href="http://gaia.ecs.csus.edu/~rotemn/GPMM/GPMM.html">GPMM2
+for GNOME2</a></li>
+<li><a href=
+"http://gaia.ecs.csus.edu/~rotemn/shop/shop.html">Example of
+application to GNOME2</a></li>
+</ul>},
+        },
+        {
+            'l' => "mark_silberstein",
+            's' => "High Performance Computing in Linux",
+            'd' => "9/12",
+            't' => "network",
+        },
+        {
+            'l' => "gby",
+            's' => "Embedded Linux",
+            'd' => "23/12",
+            't' => "none",
+            'subject_render' => \&no_url_subject_render,
+        },
+    ],
+    '2003' =>
+    [
+        {
+            'l' => "dan_kenigsberg",
+            's' => "Hspell - The First GPLed Hebrew Spell Checker",
+            'd' => "6/1",
+            't' => "prog",
+            'subject_render' => \&no_url_subject_render,
+        },
+        {
+            'l' => "mulix",
+            's' => "Kernel Hacking",
+            'd' => "20/1",
+            't' => "kernel",
+            'subject_render' => \&no_url_subject_render,
+        },
+        {
+            'l' => "meir_maor",
+            's' => "Emacs Power Usage",
+            'd' => "3/2",
+            't' => "tools",
+            'subject_render' => \&no_url_subject_render,
+        },
+        {
+            'l' => "mulix",
+            's' => "Secure Programming",
+            'd' => "17/2",
+            't' => "prog",
+            'subject_render' => \&no_url_subject_render,
+        },
+        {
+            'l' => "shlomif",
+            's' => "Web Meta Language (WML)",
+            'd' => "3/3",
+            't' => "prog",
+            'url' => "WebMetaLecture/",
+            'comments' => qq{<a href="http://thewml.org/">The WML Homepage</a>},
+        },
     ],
 );
