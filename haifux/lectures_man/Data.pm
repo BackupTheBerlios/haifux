@@ -18,7 +18,7 @@ use vars qw(@EXPORT);
 (
     'choo' => "guykeren",
     'kilmo' => "orrd",
-    'mulix' => "muli"
+    'muli' => "mulix"
 );
 
 sub series_idx_subject_render
@@ -51,11 +51,24 @@ sub no_url_subject_render
         'name_render_type' => "plain",
         'subject_render' => \&series_idx_subject_render,
     },
+    'eli' =>
+    {
+        'name' => "Eli Billauer",
+        'name_render_type' => "plain",
+        'subject_render' => \&series_idx_subject_render,
+    },
     'guykeren' =>
     {
         'name' => "Guy Keren",
         'name_render_type' => "email",
         'email' => "choo\@actcom.co.il",
+        'subject_render' => \&series_idx_subject_render,
+    },
+    'mulix' =>
+    {
+        'name' => "Muli Ben Yehuda",
+        'name_render_type' => "email",
+        'email' => "mulix\@actcom.co.il",
         'subject_render' => \&series_idx_subject_render,
     },
     'oded_koren' =>
@@ -388,13 +401,59 @@ COrba</a></li>
     '2001' =>
     [
         {
+            'l' => "eli",
+            's' => "Demistifying Boot Diskettes",
+            'd' => "8/1",
+            't' => "none",
+        },
+        {
+            'l' => "mulix",
+            's' => "Daemons and Other Monsters",
+            'd' => "22/1",
+            't' => "prog",
+            'comments' => qq{<a href="http://www.mulix.org/">Mulix' Site</a>},
+        },
+        {
+            'l' => "choo",
+            's' => "Development Tools for Linux",
+            'd' => "12/2",
+            't' => "prog",
+        },
+        {
+            'l' => "orrd",
+            's' => "All you need is LaTeX",
+            'd' => "19/2",
+            't' => "tools",
+        },
+        {
+            'l' => "alon",
+            's' => "Burning CDs under Linux",
+            'd' => "5/3",
+            't' => "tools",
+        },
+        {
             'l' => "shlomif",
             's' => "Intro to Programming in Perl",
             'd' => "26/3",
             'series' => "perl",
             't' => "prog",
             'url' => "Perl/Newbies/lecture1/",
-        },    
+        },
+        {
+            'l' => "choo",
+            's' => "Development Tools for Linux - Part II",
+            'd' => "2/4",
+            't' => "prog",
+            'url' => "28/",
+        },
+        {
+            'l' => "shlomif",
+            's' => "Intro to Programming in Perl",
+            'd' => "16/4",
+            'series' => "perl",
+            't' => "prog",
+            'url' => "Perl/Newbies/lecture2/",
+        },
     ],
     '2002' =>
     [
