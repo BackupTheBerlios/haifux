@@ -299,7 +299,7 @@ sub explicit_url_subject_render
             'l' => "choo",
             's' => "PAM (Pluggable Authentication Management)",
             'd' => "23/9",
-            't' => [qw(security utils)],
+            't' => [qw(security utils system)],
         },
         {
             'l' => "orrd",
@@ -311,7 +311,7 @@ sub explicit_url_subject_render
             'l' => "choo",
             's' => "PAM (Pluggable Authentication Management) - Writing PAM Modules",
             'd' => "4/11",
-            't' => [qw(security utils)],
+            't' => [qw(security utils system)],
             'comments' => qq{<ul>
 	 <li><a href="http://www.csn.ul.ie/~airlied/pam_smb">A PAM Module
 for NT Connectivity</a></li>
@@ -344,7 +344,7 @@ EOF
             'l' => "choo",
             's' => "Introduction to Sockets Programming",
             'd' => "28/11",
-            't' => [qw(prog network)],
+            't' => [qw(prog network system)],
             'comments' => qq{Based on <a href="http://www.actcom.co.il/~choo/lupg/tutorials/internetworking/internet-theory.html">LUPG's internet programming tutorial</a>},
         },
         {
@@ -357,7 +357,7 @@ EOF
             'l' => "choo",
             's' => "Advanced Socket Programming",
             'd' => "26/12",
-            't' => [qw(prog network)],
+            't' => [qw(prog network system)],
             'comments' => qq{Based on <a href="http://www.actcom.co.il/~choo/lupg/tutorials/internetworking/internet-theory.html">LUPG's internet programming tutorial</a><br />
     <ul>
 	<li><a href="http://www.acme.com/software/mini_httpd/">Mini-httpd,
@@ -409,14 +409,14 @@ BeoWulf FAQ</a></li>
             'l' => "choo",
             's' => "Linux Startup Process - from Boot till SysV Init",
             'd' => "6/2",
-            't' => "kernel",
+            't' => [qw(kernel system)],
             'comments' => qq{<a href="http://193.6.40.1/~cellux/pc-guide/mbr_asm_eng.html">Contents of a Master Boot Record</a>},            
         },
         {
             'l' => "choo",
             's' => "Linux Runtime Environment",
             'd' => "5/3",
-            't' => "prog",
+            't' => [qw(prog system)],
             'comments' => qq{<ul>
 	<li><a
 href="http://gazette.euskal-linux.org/issue23/flower/page1.html">Processes
@@ -437,7 +437,7 @@ FAQ - Process control</a></li>
             'l' => "orrd",
             's' => "The Page Daemon",
             'd' => "16/4",
-            't' => "kernel",
+            't' => [qw(kernel system)],
             'comments' => qq{
       <ul>
 	<li><a href =
@@ -533,13 +533,13 @@ COrba</a></li>
             'l' => "eli",
             's' => "Demistifying Boot Diskettes",
             'd' => "8/1",
-            't' => [],
+            't' => ["system"],
         },
         {
             'l' => "mulix",
             's' => "Daemons and Other Monsters",
             'd' => "22/1",
-            't' => "prog",
+            't' => [qw(prog system)],
             'comments' => qq{<a href="http://www.mulix.org/">Mulix' Site</a>},
         },
         {
@@ -564,7 +564,7 @@ COrba</a></li>
             'l' => "tzafrir",
             's' => "RPMs - Meaning of the Package",
             'd' => "19/3",
-            't' => "utils",
+            't' => [qw(utils system)],
         },
         {
             'l' => "shlomif",
@@ -706,7 +706,7 @@ COrba</a></li>
             'l' => "alon",
             's' => "Using Linux in a Windows World",
             'd' => "4/3",
-            't' => "utils",
+            't' => [qw(utils system)],
         },
         {
             'l' => "mulix",
@@ -777,7 +777,7 @@ COrba</a></li>
             'l' => "choo",
             's' => "Strace and Ltrace Behaviour",
             'd' => "30/9",
-            't' => "utils",
+            't' => [qw(utils system)],
         },
         {
             'l' => "nadav_rotem",
@@ -802,7 +802,7 @@ application to GNOME2</a></li>
             'l' => "gby",
             's' => "The Dynamic Linker",
             'd' => "23/12",
-            't' => [qw(prog)],
+            't' => [qw(prog system)],
             'url' => "http://www.benyossef.com/presentations/dlink/",
         },
     ],
@@ -878,9 +878,5 @@ EOF
             't' => [qw(network)],            
         },
     ],
-)
-
-*!@#$!@)($(@#!
-TODO TODO TODO:
-Mark the system topiced lectures as such
+);
 
