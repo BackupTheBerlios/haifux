@@ -165,7 +165,13 @@ sub explicit_url_subject_render
         'name' => "Oded Koren",
         'name_render_type' => "plain",
         'subject_render' => "no_url",
-    },       
+    },
+    'oleg' =>
+    {
+        'name' => "Oleg Goldshmidt",
+        'name_render_type' => "plain",
+        'subject_render' => "no_url",
+    },
     'orrd' =>
     {
         'name' => "Orr Dunkelman",
@@ -877,7 +883,13 @@ EOF
             'l' => "eli",
             's' => "IP Masquerading using IP-Tables",
             'd' => "28/4",
-            't' => [qw(network)],            
+            't' => [qw(network)],
+        },
+        {
+            'l' => "oleg",
+            's' => "Scaling *Way* Up",
+            'd' => "12/5",
+            't' => [qw(prog)],
         },
     ],
 );
