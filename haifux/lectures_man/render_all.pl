@@ -126,6 +126,13 @@ my @files =
         '<title>' => "Haifa Linux Club (All Lectures)",
         'h1_title' => "Haifa Linux Club - All the Lectures",
     },
+    {
+        'id' => "future",
+        'url' => "future.html",
+        't_match' => ".*",
+        'no_header' => 1,
+        'future_only' => 1,
+    },
     $get_grouped_file->(),        
 );
 
@@ -149,9 +156,14 @@ foreach my $f (@files)
 }
 
 
-my $print_topic_files = sub
+my $print_files = sub
 {
-    my $topics = shift;
+    my $spec = shift;
+    
+    my $topics = $spec->{'topics'} || [ "all" ];
+    my $is_header = $spec->{'header'};
+    my $is_past = $spec->{'past'};
+    
     if (ref($topics) eq "")
     {
         $topics = [ $topics ];
@@ -164,20 +176,25 @@ my $print_topic_files = sub
     foreach my $file (@files)
     {
         my $pattern = $file->{'t_match'};
-        if (grep { ($_ eq "all") || ($_ =~ m/^$pattern$/) } @$topics)
+        if ((grep { ($_ eq "all") || ($_ =~ m/^$pattern$/) } @$topics) &&
+            (! ($is_header && $file->{'no_header'})) &&
+            (! ($is_past && $file->{'future_only'}))
+           )
         {
             $file->{'buffer'} .= join("", (map { (ref($_) eq "CODE" ? $_->($file) : $_) } @_));
         }
     }
 };
 
-my $print_all_files = sub {    
-    return $print_topic_files->("all", @_);
-};
-
 my $get_header = 
     sub { 
         my $file = shift; 
+        if (! exists($file->{'<title>'}))
+        {
+            my $d = Data::Dumper->new([$file], ['$file']);
+            print $d->Dump();
+            die "Hello";
+        }
         return ("<html>\n",
             "<head><title>$file->{'<title>'}</title></head>\n",
             "<body bgcolor=\"white\" text=\"black\" background=\"pics/backtux.gif\">\n",
@@ -185,18 +202,26 @@ my $get_header =
             "<h2>Past Lectures</h2>\n",
             ) ;
     };
-        
-$print_all_files->(
-        $get_header
+
+sub print_headers
+{
+    return $print_files->(
+        {
+            'header' => 1,
+        },
+        @_
     );
-            
+}
+
+&print_headers($get_header);
+
 my $table_headers =  
     "<table border=\"1\">\n" .
     "<tr>\n" .
     join("", map { "<td>$_</td>\n" } ("Lecture Number", "Subject", "Lecturer", "Date", "Comments or Links")) .
     "</tr>\n";
 
-$print_all_files->($table_headers);
+&print_headers($table_headers);
     
 my ($lecture);
 my $is_future = 0;
@@ -226,7 +251,7 @@ my $page_footer = "</table>\n<hr size=\"4\" />\n" .
             )
         ) .
     "</ul>\n" .
-    "<p><a href=\"./\">Back to the club's site</a></p></body>\n</html>\n";
+    "<p><a href=\"./\">Back to the club's site</a></p>\n</body>\n</html>\n";
 
 foreach $lecture (@lectures_flat)
 {
@@ -302,7 +327,7 @@ foreach $lecture (@lectures_flat)
 
         if ($cmp_val >= 0)
         {
-            $print_all_files->(
+            &print_headers(
                 "</table>\n",
                 "<h2>Future Lectures</h2>\n",
                 $table_headers
@@ -322,7 +347,13 @@ foreach $lecture (@lectures_flat)
 
     my $rendered_lecture = "<tr>\n" . join("", map { "<td>\n$_\n</td>\n" } @fields) . "</tr>\n";
 
-    $print_topic_files->($lecture->{'t'}, $rendered_lecture);
+    $print_files->(
+        { 
+            'topics' => $lecture->{'t'},  
+            'past' => (! $is_future),
+        },
+        $rendered_lecture
+    );
 }
 continue
 {
@@ -343,7 +374,7 @@ continue
     }
 }
 
-$print_all_files->($page_footer);
+&print_headers($page_footer);
 
 foreach my $f (@files)
 {
