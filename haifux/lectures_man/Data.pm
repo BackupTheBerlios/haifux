@@ -6,7 +6,7 @@ use vars qw(@ISA);
 
 @ISA=qw(Exporter);
 
-my @exported_vars = qw(%lecturer_aliases %lecturers %lectures %series_map %topics_map);
+my @exported_vars = qw(%lecturer_aliases %lecturers %lectures %series_map %topics_map %topic_aliases);
 
 use vars @exported_vars;
 
@@ -224,6 +224,13 @@ sub no_url_subject_render
         'name' => "Tools and utilities lectures",
         'url' => "util",
     },
+);
+
+%topic_aliases =
+(
+    (map { $_ => 'utils' } (qw(util tools tool))),
+    'networking' => "network",
+    'advo' => "advocacy",
 );
 
 %lectures = 
@@ -787,7 +794,7 @@ application to GNOME2</a></li>
             'l' => "shlomif",
             's' => "Web Meta Language (WML)",
             'd' => "3/3",
-            't' => [qw(prog utils)],
+            't' => [qw(prog tools)],
             'url' => "WebMetaLecture/",
             'comments' => qq{<a href="http://thewml.org/">The WML Homepage</a>},
         },

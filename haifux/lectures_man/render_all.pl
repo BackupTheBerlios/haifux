@@ -39,14 +39,30 @@ foreach my $year (sort { $a <=> $b } keys(%lectures))
         }
         
         my $topics = ((ref($lecture->{'t'}) eq "ARRAY") ? $lecture->{'t'} : [ $lecture->{'t'}]);
+        my @processed_topics;
         foreach my $a_topic (@$topics)
         {
+            my $real_topic = $a_topic;
             if (!exists($topics_map{$a_topic}))
             {
-                die "Topic '${a_topic}' mentioned in lecture " . 
+                if (exists($topic_aliases{$a_topic}))
+                {
+                    $real_topic = $topic_aliases{$a_topic};
+                }
+                else
+                {
+                    die "Topic '${a_topic}' mentioned in lecture " . 
+                        "$lecture->{'s'} is not registered.";
+                }
+            }
+            if (!exists($topics_map{$real_topic}))
+            {
+                die "Topic '${a_topic} -> ${real_topic}' mentioned in lecture " . 
                     "$lecture->{'s'} is not registered.";
             }
+            push @processed_topics, $real_topic;
         }
+        $lecture_copy{'t'} = \@processed_topics;
         $lecture_copy{'d'} .= "/$year"; 
         if (!exists($lecture_copy{'comments'}))
         {
