@@ -71,6 +71,12 @@ sub no_url_subject_render
         'email' => "orrd\@vipe.technion.ac.il",
         'subject_render' => \&series_idx_subject_render,
     },
+    'shimon_panfil' =>
+    {
+        'name' => "Shimon Panfil, Ph.D.",
+        'name_render_type' => "plain",
+        'subject_render' => \&series_idx_subject_render,
+    },
     'shlomif' =>
     {
         'name' => "Shlomi Fish",
@@ -222,6 +228,48 @@ single thread, httpd</a></li>
     ],
     '2000' =>
     [
+        {
+            'l' => "orrd",
+            's' => "Kerberos Authentication Protocol",
+            'd' => "9/1",
+            't' => "security",
+            'comments' => qq{
+<ul>
+	<li><a href="ftp://ftp.isi.edu/in-notes/rfc1411.txt">RFC 1411
+(Kerberos 4)</a></li>
+	<li><a href="ftp://ftp.isi.edu/in-notes/rfc1510.txt">RFC 1510
+(Kerberos 5)</a></li>
+	<li><a href="http://ptolemy.eecs.berkeley.edu/~cxh/krb/">Kerberos
+Data (User, Administrator, etc.)</a></li>
+	<li><a href="http://www.cs.technion.ac.il/~cs236350">Computer
+Security Course at the Technion</a></li>
+	<li><a href="lecture/10/kerberos.ps">Kerberos Version 4 short
+explanation (NOT an RFC)</a></li>
+       </ul>
+    },
+        },
+        {
+            'l' => "shimon_panfil",
+            's' => "High Performance Computing on Linux",
+            'd' => "23/1",
+            't' => "none",
+            'comments' => q{
+                <ul>
+	<li><a href="http://www.cs.huji.ac.il/labs/mosix">MOSIX (Made in
+Israel)</a></li>
+	<li><a href="http://www.pobox.com/~kragen/beowulf-faq.txt">
+BeoWulf FAQ</a></li>
+       </ul>
+            },
+            'url' => "11/hpcl.ps",
+        },
+        {
+            'l' => "choo",
+            's' => "Linux Startup Process - from Boot till SysV Init",
+            'd' => "6/2",
+            't' => "kernel",
+            'comments' => q{<a href="http://193.6.40.1/~cellux/pc-guide/mbr_asm_eng.html">Contents of a Master Boot Record</a>},            
+        },
         {
             'l' => "orrd",
             's' => "Advanced Real Life Administration",
