@@ -8,6 +8,8 @@ use Data::Dumper;
 
 use Data;
 
+use POSIX;
+
 
 
 my @lectures_flat;
@@ -75,9 +77,19 @@ my $num_lectures_in_group = 20;
 
 my $last_idx_in_group = 20;
 
-my $get_grouped_file = sub {
+my $num_default_lectures = scalar(grep { $_->{'series'} eq 'default' } (@lectures_flat));
+
+sub get_group_indexes
+{
+    my $group_id = shift;
     my $first_idx = $num_lectures_in_group*($group_id-1)+1;
     my $last_idx = $first_idx+19;
+
+    return ($first_idx, $last_idx);
+}
+
+my $get_grouped_file = sub {
+    my ($first_idx, $last_idx) = get_group_indexes($group_id);
     $last_idx_in_group = $last_idx;
     return {
         'id' => "grouped",
@@ -138,7 +150,7 @@ my @files =
     {
         'id' => "util",
         'url' => "util.html",
-        't_match' => "tools",
+        't_match' => "utils",
         '<title>' => "Haifa Linux Club (Tools and Utilities Lectures)",
         'h1_title' => "Haifa Linux Club - Tools and Utilities Lectures",
     },
@@ -183,7 +195,7 @@ my $get_header =
         my $file = shift; 
         return ("<html>\n",
             "<head><title>$file->{'<title>'}</title></head>\n",
-            "<body bgcolor=\"white\">\n",
+            "<body bgcolor=\"white\" text=\"black\" background=\"pics/backtux.gif\">\n",
             "<div align=\"center\"><h1>$file->{'h1_title'}</h1></div>\n",
             "<h2>Past Lectures</h2>\n",
             ) ;
@@ -204,7 +216,32 @@ $print_all_files->($table_headers);
 my ($lecture);
 my $is_future = 0;
 
-my $page_footer = "</table>\n</body>\n</html>\n";
+my $page_footer = "</table>\n<hr size=\"4\" />\n" . 
+    "<h3><a href=\"all.html\">All the Lectures</a></h3>\n" .
+    "<h3>Other Lectures Sorted by Number</h3>\n" .
+    "<ul>\n" . 
+        join("", 
+            (map 
+                { 
+                    my ($f, $l) = get_group_indexes($_); 
+                    "<li><a href=\"lectures$_.html\">Lectures $f-$l</a></li>\n"
+                }
+                (1 .. POSIX::ceil($num_default_lectures/20))
+            )
+        ) . "</ul>\n" .
+    "<h3>Other Lectures Sorted by Topic</h3>\n" .
+    "<ul>\n" .
+        join("", 
+            (map 
+                { 
+                    my $url = (exists($topics_map{$_}{'url'}) ? $topics_map{$_}{'url'} : $_);
+                    "<li><a href=\"$url.html\">".($topics_map{$_}->{'name'})."</a></li>\n" 
+                } 
+                (keys(%topics_map))
+            )
+        ) .
+    "</ul>\n" .
+    "<p><a href=\"./\">Back to the club's site</a></p></body>\n</html>\n";
 
 foreach $lecture (@lectures_flat)
 {

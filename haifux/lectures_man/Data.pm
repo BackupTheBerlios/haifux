@@ -217,10 +217,12 @@ sub no_url_subject_render
     'prog' =>
     {
         'name' => "Programming related lectures",
+        'url' => "programming",
     },
-    'tools' =>
+    'utils' =>
     {
         'name' => "Tools and utilities lectures",
+        'url' => "util",
     },
 );
 
@@ -244,7 +246,7 @@ sub no_url_subject_render
             'l' => "choo",
             's' => "PAM (Pluggable Authentication Management)",
             'd' => "23/9",
-            't' => [qw(security tools)],
+            't' => [qw(security utils)],
         },
         {
             'l' => "orrd",
@@ -256,7 +258,7 @@ sub no_url_subject_render
             'l' => "choo",
             's' => "PAM (Pluggable Authentication Management) - Writing PAM Modules",
             'd' => "4/11",
-            't' => [qw(security tools)],
+            't' => [qw(security utils)],
             'comments' => qq{<ul>
 	 <li><a href="http://www.csn.ul.ie/~airlied/pam_smb">A PAM Module
 for NT Connectivity</a>
@@ -268,7 +270,7 @@ Based PAM</a>
             'l' => "asaf_arbely",
             's' => "Universal Servers - Architecture, Availability and Usage. The plaftorm is... Informix",
             'd' => "18/11",
-            't' => "tools",
+            't' => "utils",
             'comments' => <<'EOF',
         <ul>
 	 <li><a href="http://www.informix.com/iif2000/">Informix Internet
@@ -375,7 +377,7 @@ FAQ - Process control</a></li>
             'l' => "shlomif",
             's' => "The PostgreSQL Relational Database Server",
             'd' => "2/4",
-            't' => [qw(tools prog)],
+            't' => [qw(utils prog)],
             'url' => "PostgreSQL-Lecture/",
         },
         {
@@ -461,7 +463,7 @@ COrba</a></li>
             'l' => "orrd",
             's' => "SED - The Stream Editor",
             'd' => "11/9",
-            't' => "tools",
+            't' => "utils",
             'comments' => qq{<a href ="http://www.dbnet.ece.ntua.gr/~george/sed/sedtut_1.html">Do it with SED</a>},
         },
         {
@@ -491,25 +493,25 @@ COrba</a></li>
             'l' => "choo",
             's' => "Development Tools for Linux",
             'd' => "12/2",
-            't' => [qw(prog tools)],
+            't' => [qw(prog utils)],
         },
         {
             'l' => "orrd",
             's' => "All you need is LaTeX",
             'd' => "19/2",
-            't' => "tools",
+            't' => "utils",
         },
         {
             'l' => "alon",
             's' => "Burning CDs under Linux",
             'd' => "5/3",
-            't' => "tools",
+            't' => "utils",
         },
         {
             'l' => "tzafrir",
             's' => "RPMs - Meaning of the Package",
             'd' => "19/3",
-            't' => "tools",
+            't' => "utils",
         },
         {
             'l' => "shlomif",
@@ -523,7 +525,7 @@ COrba</a></li>
             'l' => "choo",
             's' => "Development Tools for Linux - Part II",
             'd' => "2/4",
-            't' => [qw(prog tools)], 
+            't' => [qw(prog utils)], 
             'url' => "28/",
         },
         {
@@ -538,7 +540,7 @@ COrba</a></li>
             'l' => "alon",
             's' => "Multimedia in Linux",
             'd' => "23/4",
-            't' => "tools",
+            't' => "utils",
             'comments' => qq{<a href="lectures/33/shlomif_remarks.txt">Shlomi Fish's errata and comments</a>},
         },
         {
@@ -574,14 +576,14 @@ COrba</a></li>
             'l' => "shlomif",
             's' => "GIMP",
             'd' => "16/7",
-            't' => "tools",
+            't' => "utils",
             'url' => "Gimp/",
         },
         {
             'l' => "shlomif",
             's' => "GIMP (part II)",
             'd' => "13/8",
-            't' => "tools",
+            't' => "utils",
             'url' => "Gimp/",
         },
         {
@@ -595,7 +597,7 @@ COrba</a></li>
             'l' => "ez-aton",
             's' => "KickStart and Mass Linux Production",
             'd' => "10/9",
-            't' => "tools",
+            't' => "utils",
         },
         {
             'l' => "orrd",
@@ -651,7 +653,7 @@ COrba</a></li>
             'l' => "alon",
             's' => "Using Linux in a Windows World",
             'd' => "4/3",
-            't' => "tools",
+            't' => "utils",
         },
         {
             'l' => "mulix",
@@ -694,7 +696,7 @@ COrba</a></li>
             'l' => "alon",
             's' => "How to Burn CDs in Linux and Remain Sane",
             'd' => "8/7",
-            't' => "tools",
+            't' => "utils",
             'comments' => qq{<a href="lectures/30">Rerun lecture (30)</a>},
         },
         {
@@ -707,10 +709,10 @@ COrba</a></li>
         },
         {
             'l' => "shlomif",
-            's' => "Intro to the GNU Autotools",
+            's' => "Intro to the GNU Autoutils",
             'd' => "5/8",
             't' => "prog",
-            'url' => "Autotools/slides/",
+            'url' => "Autoutils/slides/",
         },
         {
             'l' => "orrd",
@@ -722,13 +724,13 @@ COrba</a></li>
             'l' => "choo",
             's' => "Strace and Ltrace Behaviour",
             'd' => "30/9",
-            't' => "tools",
+            't' => "utils",
         },
         {
             'l' => "nadav_rotem",
             's' => "The GNOME-2 Desktop + Developing GTK Applications with GLADE2",
             'd' => "14/10",
-            't' => [qw(prog tools)],
+            't' => [qw(prog utils)],
             'comments' => qq{<ul>
 <li><a href="http://gaia.ecs.csus.edu/~rotemn/GPMM/GPMM.html">GPMM2
 for GNOME2</a></li>
@@ -757,7 +759,7 @@ application to GNOME2</a></li>
             'l' => "dan_kenigsberg",
             's' => "Hspell - The First GPLed Hebrew Spell Checker",
             'd' => "6/1",
-            't' => [qw(prog tools)],
+            't' => [qw(prog utils)],
             'subject_render' => \&no_url_subject_render,
         },
         {
@@ -771,7 +773,7 @@ application to GNOME2</a></li>
             'l' => "meir_maor",
             's' => "Emacs Power Usage",
             'd' => "3/2",
-            't' => "tools",
+            't' => "utils",
             'subject_render' => \&no_url_subject_render,
         },
         {
@@ -785,9 +787,15 @@ application to GNOME2</a></li>
             'l' => "shlomif",
             's' => "Web Meta Language (WML)",
             'd' => "3/3",
-            't' => [qw(prog tools)],
+            't' => [qw(prog utils)],
             'url' => "WebMetaLecture/",
             'comments' => qq{<a href="http://thewml.org/">The WML Homepage</a>},
+        },
+        {
+            'l' => "mark_silberstein",
+            's' => "Parallel Programming Concepts",
+            'd' => "17/3",
+            't' => [qw(prog network)],
         },
     ],
 );
