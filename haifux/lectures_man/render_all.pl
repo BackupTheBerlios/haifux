@@ -195,13 +195,24 @@ my $get_header =
             print $d->Dump();
             die "Hello";
         }
+        my $strict = 0;
+        
         return (
             #qq{<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">\n},
+            ($strict ? 
+            qq{<!DOCTYPE html
+     PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">\n}
+            :
             qq{<!DOCTYPE html 
     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">\n},
-            "<html>\n",
-            "<head><title>$file->{'<title>'}</title></head>\n",
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">\n}
+            ),
+            "<html xmlns=\"http://www.w3.org/1999/xhtml\" xml:lang=\"en\" lang=\"en\">\n",
+            "<head>\n", 
+            "<title>$file->{'<title>'}</title>\n", 
+            "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=iso-8859-1\" />\n",
+            "</head>\n",
             "<body bgcolor=\"white\" text=\"black\" background=\"pics/backtux.gif\">\n",
             "<div align=\"center\"><h1>$file->{'h1_title'}</h1></div>\n",
             "<h2>Past Lectures</h2>\n",
