@@ -236,7 +236,19 @@ sub explicit_url_subject_render
         'lecture_num_template' => 
             sub {
                 my $lecture_num = shift;
-                return "<div align=\"center\">$lecture_num</div>\n";
+                my %flags = (@_);
+                if ($flags{'strict'})
+                {
+                    return 
+                        {
+                            'td-params' => " class=\"c\"",
+                            'text' => $lecture_num,
+                        };
+                }
+                else
+                {
+                    return "<div align=\"center\">$lecture_num</div>\n"
+                }
             },               
     },
     'perl' =>

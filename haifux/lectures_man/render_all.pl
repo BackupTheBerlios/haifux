@@ -186,6 +186,10 @@ my $print_files = sub
     }
 };
 
+# my $strict_flag = shift;
+
+my $strict_flag = 1;
+
 my $get_header = 
     sub { 
         my $file = shift; 
@@ -195,7 +199,8 @@ my $get_header =
             print $d->Dump();
             die "Hello";
         }
-        my $strict = 0;
+        
+        my $strict = $strict_flag;
         
         return (
             #qq{<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">\n},
@@ -212,9 +217,13 @@ my $get_header =
             "<head>\n", 
             "<title>$file->{'<title>'}</title>\n", 
             "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=iso-8859-1\" />\n",
+            ($strict ? qq{<link rel="StyleSheet" href="./style.css" type="text/css" />\n} : ""),
             "</head>\n",
-            "<body bgcolor=\"white\" text=\"black\" background=\"pics/backtux.gif\">\n",
-            "<div align=\"center\"><h1>$file->{'h1_title'}</h1></div>\n",
+            ($strict ? "<body>" : "<body bgcolor=\"white\" text=\"black\" background=\"pics/backtux.gif\">\n"),
+            ($strict ? 
+                "<h1>$file->{'h1_title'}</h1>\n" :
+                "<div align=\"center\"><h1>$file->{'h1_title'}</h1></div>\n"
+            ),
             "<h2>Past Lectures</h2>\n",
             ) ;
     };
@@ -242,7 +251,7 @@ my $table_headers =
 my ($lecture);
 my $is_future = 0;
 
-my $page_footer = "</table>\n<hr size=\"4\" />\n" . 
+my $page_footer = "</table>\n<hr />\n" . 
     "<h3><a href=\"all.html\">All the Lectures</a></h3>\n" .
     "<h3>Other Lectures Sorted by Number</h3>\n" .
     "<ul>\n" . 
@@ -280,7 +289,7 @@ foreach $lecture (@lectures_flat)
     # Generate the lecture number
     my $series = $lecture->{'series'};
     my $idx_in_series = $series_indexes{$series};
-    push @fields, $series_map{$series}->{'lecture_num_template'}->($idx_in_series);
+    push @fields, $series_map{$series}->{'lecture_num_template'}->($idx_in_series, 'strict' => $strict_flag);
 
     # Generate the subject
 
@@ -386,7 +395,17 @@ foreach $lecture (@lectures_flat)
 
     push @fields, $lecture->{'comments'};
 
-    my $rendered_lecture = "<tr>\n" . join("", map { "<td>\n$_\n</td>\n" } @fields) . "</tr>\n";
+    my $rendered_lecture = 
+        "<tr>\n" . 
+        join("", 
+            map 
+                {
+                    $_ = (ref($_) eq "HASH") ? $_ : { 'text' => $_, 'td-params' => "", };
+                    "<td" . $_->{'td-params'} . ">\n" . 
+                    $_->{'text'} . "\n</td>\n" 
+                } @fields
+             ) 
+        . "</tr>\n";
 
     $print_files->(
         { 
@@ -423,4 +442,12 @@ foreach my $f (@files)
     print O $f->{'buffer'};
     close(O);
 }
+
+open STYLE, ">$dest_dir/style.css";
+print STYLE <<EOF;
+body { background-color : white ; background-image : url(pics/backtux.gif) }
+h1 { text-align : center }
+td.c { text-align : center }
+EOF
+close (STYLE);
 
