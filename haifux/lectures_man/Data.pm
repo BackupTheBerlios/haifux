@@ -230,7 +230,7 @@ sub explicit_url_subject_render
 (
     'advocacy' =>
     {
-        'name' => "Advocacy and Evangelism lectures",
+        'name' => "Advocacy and evangelism lectures",
         'url' => "advocacy",
         'title' => "Advocacy Related Lectures",
     },
