@@ -159,6 +159,11 @@ my $print_topic_files = sub
     {
         $topics = [ $topics ];
     }
+    elsif (@$topics == 0)
+    {
+        $topics = [ "none" ];
+    }
+
     foreach my $file (@files)
     {
         my $pattern = $file->{'t_match'};
@@ -311,7 +316,8 @@ continue
         print O $buffer;
         close(O);
         $f = $files[$grouped_file_idx] = $get_grouped_file->();
-        $f->{'buffer'} .= ($get_header->($f) . $table_headers);
+        $f->{'buffer'} .= join("", $get_header->($f));
+        $f->{'buffer'} .= $table_headers;
     }
 }
 
