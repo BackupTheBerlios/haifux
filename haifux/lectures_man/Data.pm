@@ -824,5 +824,11 @@ application to GNOME2</a></li>
             'd' => "17/3",
             't' => [qw(prog network)],
         },
+        {
+            'l' => "mulix",
+            's' => "Linux Memory Allocators",
+            'd' => "31/3",
+            't' => [qw(kernel prog)],
+        },
     ],
 );
