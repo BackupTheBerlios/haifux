@@ -446,6 +446,7 @@ print STYLE <<EOF;
 body { background-color : white ; background-image : url(pics/backtux.gif) }
 h1 { text-align : center }
 td.c { text-align : center }
+hr { height : 4px }
 EOF
 close (STYLE);
 
