@@ -365,7 +365,7 @@ foreach $lecture (@lectures_flat)
 
     $print_files->(
         { 
-            'topics' => $lecture->{'t'},  
+            'topics' => $lecture->{'t'},
             'past' => (! $is_future),
         },
         $rendered_lecture
