@@ -144,8 +144,14 @@ foreach $lecture (@lectures_flat)
 
     my $lecturer_record = $lecturers{$lecturer_id};
 
+    my $subject_render = 
+        (exists($lecture->{'subject_render'}) ? 
+            $lecture->{'subject_render'} :
+            $lecturer_record->{'subject_render'}
+        );
+
     push @fields, 
-        $lecturer_record->{'subject_render'}->(
+        $subject_render->(
             $lecture,
             $idx_in_series
         );

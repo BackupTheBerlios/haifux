@@ -253,7 +253,7 @@ explanation (NOT an RFC)</a></li>
             's' => "High Performance Computing on Linux",
             'd' => "23/1",
             't' => "none",
-            'comments' => q{
+            'comments' => qq{
                 <ul>
 	<li><a href="http://www.cs.huji.ac.il/labs/mosix">MOSIX (Made in
 Israel)</a></li>
@@ -268,7 +268,73 @@ BeoWulf FAQ</a></li>
             's' => "Linux Startup Process - from Boot till SysV Init",
             'd' => "6/2",
             't' => "kernel",
-            'comments' => q{<a href="http://193.6.40.1/~cellux/pc-guide/mbr_asm_eng.html">Contents of a Master Boot Record</a>},            
+            'comments' => qq{<a href="http://193.6.40.1/~cellux/pc-guide/mbr_asm_eng.html">Contents of a Master Boot Record</a>},            
+        },
+        {
+            'l' => "choo",
+            's' => "Linux Runtime Environment",
+            'd' => "5/3",
+            't' => "prog",
+            'comments' => qq{<ul>
+	<li><a
+href="http://gazette.euskal-linux.org/issue23/flower/page1.html">Processes
+on Linux and Windows NT</a></li>
+	<li><a
+href="http://www.erlenstar.demon.co.uk/unix/faq_2.html">Unix Programming
+FAQ - Process control</a></li>
+       </ul>},
+        },
+        {
+            'l' => "shlomif",
+            's' => "The PostgreSQL Relational Database Server",
+            'd' => "2/4",
+            't' => "tools",
+            'url' => "PostgreSQL-Lecture/",
+        },
+        {
+            'l' => "orrd",
+            's' => "The Page Daemon",
+            'd' => "16/4",
+            't' => "kernel",
+            'comments' => qq{
+      <ul>
+	<li><a href =
+"http://www.cs.technion.ac.il/Courses/Operating-Systems-Structure">Operating
+systems structure course</a></li>
+	<li>Kernel Code - shm.*, mem*.[c,h], ptable*.[c,h,asm] :)</li>
+	<li><a href=
+"http://www.bell-labs.com/topic/books/os-book/slide-dir/slide-ps.html">Operating
+System Concepts</a> chapters 21, 22.</li>
+       </ul>
+            },
+            'subject_render' => \&no_url_subject_render,
+        },
+        {
+            'l' => "choo",
+            's' => "Network Protocols (routing, etc)",
+            'd' => "7/5",
+            't' => "network",
+            'url' => "16+18/index.html",
+        },
+        {
+            'l' => "shlomif",
+            's' => "The Scheme Programming Language and Lambda Calculus",
+            'd' => "28/5",
+            't' => "prog",
+            'url' => "Lambda-Calculus/",
+        },
+        {
+            'l' => "choo",
+            's' => "Network Protocols pt. II - Routing and Higher Level Protocols",
+            'd' => "11/6",
+            't' => "network",
+            'url' => "16+18/index2.html",
+        },
+        {
+            'l' => "choo",
+            's' => "Advnaced Networking Administration",
+            'd' => "25/6",
+            't' => "network",
         },
         {
             'l' => "orrd",
