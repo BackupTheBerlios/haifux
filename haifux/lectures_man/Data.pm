@@ -29,6 +29,13 @@ sub series_idx_subject_render
     return "<a href=\"./lectures/$url\">" . $lecture->{'s'} . "</a>";
 };
 
+sub no_url_subject_render
+{
+    my $lecture = shift;
+
+    return $lecture->{'s'};
+}
+
 %lecturers = 
 (
     'alon' =>
@@ -51,6 +58,12 @@ sub series_idx_subject_render
         'email' => "choo\@actcom.co.il",
         'subject_render' => \&series_idx_subject_render,
     },
+    'oded_koren' =>
+    {
+        'name' => "Oded Koren",
+        'name_render_type' => "plain",
+        'subject_render' => \&no_url_subject_render,
+    },       
     'orrd' =>
     {
         'name' => "Orr Dunkelman",
@@ -92,6 +105,10 @@ sub series_idx_subject_render
 
 my %topics = 
 (
+    'advocacy' =>
+    {
+        'name' => "Advocacy and Evangelism lectures",
+    },
     'net' => 
     {
         'name' => "Networking lectures",        
@@ -176,12 +193,32 @@ EOF
                 ,
         },
         {
-            'l' => "
-            's' =>
+            'l' => "choo",
+            's' => "Introduction to Sockets Programming",
+            'd' => "28/11",
+            't' => "prog",
+            'comments' => qq{Based on <a href="http://www.actcom.co.il/~choo/lupg/tutorials/internetworking/internet-theory.html">LUPG's internet programming tutorial</a>},
         },
-
-            
-            
+        {
+            'l' => "oded_koren",
+            's' => "Introducing the Linux World to Outsides",
+            'd' => "12/12",
+            't' => "advocacy",
+        },
+        {
+            'l' => "choo",
+            's' => "Advanced Socket Programming",
+            'd' => "26/12",
+            't' => "prog",
+            'comments' => qq{Based on <a href="http://www.actcom.co.il/~choo/lupg/tutorials/internetworking/internet-theory.html">LUPG's internet programming tutorial<br />
+    <ul>
+	<li><a href="http://www.acme.com/software/mini_httpd/">Mini-httpd,
+httpd using the fork model</a></li>
+	<li><a href="http://mathop.diva.nl">Mathopd, single process,
+single thread, httpd</a></li>
+    </ul>
+            },
+        },  
     ],
     '2000' =>
     [
