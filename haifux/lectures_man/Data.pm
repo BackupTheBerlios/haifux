@@ -289,7 +289,7 @@ EOF
             'l' => "choo",
             's' => "Introduction to Sockets Programming",
             'd' => "28/11",
-            't' => "prog",
+            't' => [qw(prog network)],
             'comments' => qq{Based on <a href="http://www.actcom.co.il/~choo/lupg/tutorials/internetworking/internet-theory.html">LUPG's internet programming tutorial</a>},
         },
         {
@@ -302,7 +302,7 @@ EOF
             'l' => "choo",
             's' => "Advanced Socket Programming",
             'd' => "26/12",
-            't' => "prog",
+            't' => [qw(prog network)],
             'comments' => qq{Based on <a href="http://www.actcom.co.il/~choo/lupg/tutorials/internetworking/internet-theory.html">LUPG's internet programming tutorial<br />
     <ul>
 	<li><a href="http://www.acme.com/software/mini_httpd/">Mini-httpd,
@@ -319,7 +319,7 @@ single thread, httpd</a></li>
             'l' => "orrd",
             's' => "Kerberos Authentication Protocol",
             'd' => "9/1",
-            't' => "security",
+            't' => [qw(security network)],
             'comments' => qq{
 <ul>
 	<li><a href="ftp://ftp.isi.edu/in-notes/rfc1411.txt">RFC 1411
@@ -447,7 +447,7 @@ System Concepts</a> chapters 21, 22.</li>
             'l' => "choo",
             's' => "CORBA - Theory before Practice",
             'd' => "24/8",
-            't' => "prog",
+            't' => [qw(prog network)],
             'comments' => qq{
 <ul>
 	<li><a href="http://www.cs.wustl.edu/~schmidt/TAO.html">TAO - The
@@ -468,7 +468,7 @@ COrba</a></li>
             'l' => "choo",
             's' => "CORBA Programming - Simple Clients and Servers",
             'd' => "25/9",
-            't' => "prog",
+            't' => [qw(prog network)],
             'comments' => qq{<a href="http://www.cuj.com/experts/1811/vinoski.html">_var and _ptr</a>},
         },
     ],
@@ -601,7 +601,7 @@ COrba</a></li>
             'l' => "orrd",
             's' => "SSL - the Protocol, the Package and the CA",
             'd' => "24/9",
-            't' => "security",
+            't' => [qw(security network)],
         },
         {
             'l' => "shlomi_loubaton",

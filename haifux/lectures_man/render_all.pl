@@ -14,7 +14,6 @@ my @lectures_flat;
 
 my @this_time = localtime(time());
 my ($this_day, $this_month, $this_year) = @this_time[3,4,5];
-print "\$this_day=$this_day\n";
 $this_year += 1900;
 $this_month++;
 my %series_indexes = ();
@@ -68,6 +67,42 @@ my @files =
         '<title>' => "Haifa Linux Club (All Lectures)",
         'h1_title' => "Haifa Linux Club - All the Lectures",
     },
+    {
+        'id' => "network",
+        'url' => "network.html",
+        't_match' => "network",
+        '<title>' => "Haifa Linux Club (Networking Lectures)",
+        'h1_title' => "Haifa Linux Club - Networking Lectures",
+    },
+    {
+        'id' => "kernel",
+        'url' => "kernel.html",
+        't_match' => "kernel",
+        '<title>' => "Haifa Linux Club (Kernel Lectures)",
+        'h1_title' => "Haifa Linux Club - Kernel Lectures",
+    },
+    {
+        'id' => "security",
+        'url' => "security.html",
+        't_match' => "security",
+        '<title>' => "Haifa Linux Club (Security Lectures)",
+        'h1_title' => "Haifa Linux Club - Security Lectures",
+    },
+    {
+        'id' => "programming",
+        'url' => "programming.html",
+        't_match' => "prog",
+        '<title>' => "Haifa Linux Club (Programming Related Lectures)",
+        'h1_title' => "Haifa Linux Club - Programming Related Lectures",
+    },
+    {
+        'id' => "util",
+        'url' => "util.html",
+        't_match' => "tools",
+        '<title>' => "Haifa Linux Club (Tools and Utilities Lectures)",
+        'h1_title' => "Haifa Linux Club - Tools and Utilities Lectures",
+    },
+ 
     
 );
 
